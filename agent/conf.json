@@ -1,0 +1,902 @@
+{
+  "apps": [
+    {
+      "id": "A1",
+      "name": "QQ Mail",
+      "package": "com.tencent.androidqqmail",
+      "launch-activity": "com.tencent.qqmail.launcher.desktop.LauncherActivity",
+      "apk-path": "email/app_qqmail.apk"
+    },
+    {
+      "id": "A2",
+      "name": "FairEmail",
+      "package": "eu.faircode.email",
+      "launch-activity": ".ActivityMain",
+      "apk-path": "email/app_FairEmail.apk"
+    },
+    {
+      "id": "A3",
+      "name": "Petal Mail",
+      "package": "com.huawei.petalmail",
+      "launch-activity": "com.huawei.mail.core.welcome.WelcomeActivity",
+      "apk-path": "email/app_petalmail.apk"
+    },
+    {
+      "id": "A4",
+      "name": "Outlook",
+      "package": "com.microsoft.office.outlook",
+      "launch-activity": ".ui.miit.MiitLauncherActivity",
+      "apk-path": "email/app_Outlook.apk"
+    },
+    {
+      "id": "A5",
+      "name": "K-9 Mail",
+      "package": "com.fsck.k9",
+      "launch-activity": ".activity.MessageList",
+      "apk-path": "email/app_k9.apk"
+    },
+    {
+      "id": "A6",
+      "name": "Apple Music",
+      "package": "com.apple.android.music",
+      "launch-activity": ".onboarding.activities.SplashActivity",
+      "apk-path": "music/app_AppleMusic.apk"
+    },
+    {
+      "id": "A7",
+      "name": "FiiO Music",
+      "package": "com.fiio.music",
+      "launch-activity": ".activity.SplashActivity",
+      "apk-path": "music/app_FiioMusic.apk"
+    },
+    {
+      "id": "A8",
+      "name": "Music Player",
+      "package": "musicplayer.musicapps.music.mp3player",
+      "launch-activity": ".activities.SplashActivity",
+      "apk-path": "music/app_Music-Player.apk"
+    },
+    {
+      "id": "A9",
+      "name": "Muzio Player",
+      "package": "com.shaiban.audioplayer.mplayer",
+      "launch-activity": ".common.splash.NavigatingActivity",
+      "apk-path": "music/app_Muzio-Player.apk"
+    },
+    {
+      "id": "A10",
+      "name": "Offline Music Player",
+      "package": "mymusic.offlinemusicplayer.mp3player.playmusic",
+      "launch-activity": "better.musicplayer.activities.SplashActivity",
+      "apk-path": "music/app_Offline-Music-Player.apk"
+    },
+    {
+      "id": "A11",
+      "name": "Daily Notes",
+      "package": "com.an.room",
+      "launch-activity": ".ui.activity.NotesListActivity",
+      "apk-path": "note/app_DailyNotes.apk"
+    },
+    {
+      "id": "A12",
+      "name": "ToDoApp",
+      "package": "com.example.workspace.todoapp",
+      "launch-activity": ".MainActivity",
+      "apk-path": "note/app_ToDoApp.apk"
+    },
+    {
+      "id": "A13",
+      "name": "Mind Notes",
+      "package": "mindnotes.note.notepad.notebook.memo.stickynotes",
+      "launch-activity": "notes.notebook.android.mynotes.ui.activities.SplashActivity",
+      "apk-path": "note/app_MindNotes.apk"
+    },
+    {
+      "id": "A14",
+      "name": "Notes",
+      "package": "com.ogden.memo",
+      "launch-activity": ".ui.MemoMain",
+      "apk-path": "note/app_Notes.apk"
+    },
+    {
+      "id": "A15",
+      "name": "Notepad",
+      "package": "ru.andrey.notepad",
+      "launch-activity": ".MainActivity",
+      "apk-path": "note/app_Notepad.apk"
+    },
+    {
+      "id": "A16",
+      "name": "Camera",
+      "package": "com.android.camera2",
+      "launch-activity": "com.android.camera.CameraLauncher",
+      "apk-path": "camera/app_Camera.apk"
+    },
+    {
+      "id": "A17",
+      "name": "Camera Magix",
+      "package": "com.magix.camera_mx",
+      "launch-activity": "com.magix.android.cameramx.cameragui.NewCameraActivity",
+      "apk-path": "camera/app_camera-mx.apk"
+    },
+    {
+      "id": "A18",
+      "name": "Open Camera",
+      "package": "net.sourceforge.opencamera",
+      "launch-activity": ".MainActivity",
+      "apk-path": "camera/app_open-camera.apk"
+    },
+    {
+      "id": "A19",
+      "name": "Camera FV-5 Lite",
+      "package": "com.flavionet.android.camera.lite",
+      "launch-activity": ".Main",
+      "apk-path": "camera/app_camera-fv-5-lite.apk"
+    },
+    {
+      "id": "A20",
+      "name": "Candy Camera",
+      "package": "com.joeware.android.gpulumera",
+      "launch-activity": ".camera.ActivityCamera",
+      "apk-path": "camera/app_candy-camera.apk"
+    },
+    {
+      "id": "A21",
+      "name": "Microsoft Translator",
+      "package": "com.microsoft.translator",
+      "launch-activity": ".activity.SplashActivity",
+      "apk-path": "translate/app_microsoft-translator.apk"
+    },
+    {
+      "id": "A22",
+      "name": "Google Translate",
+      "package": "com.google.android.apps.translate",
+      "launch-activity": ".TranslateActivity",
+      "apk-path": "translate/app_google_translate.apk"
+    },
+    {
+      "id": "A23",
+      "name": "DeepL Translator",
+      "package": "com.deepl.mobiletranslator",
+      "launch-activity": ".MainActivity",
+      "apk-path": "translate/app_DeepL.apk"
+    },
+    {
+      "id": "A24",
+      "name": "Yandex Translate",
+      "package": "com.vladimirkondenko.yamblz.release",
+      "launch-activity": "com.vladimirkondenko.yamblz.screens.main.MainActivity",
+      "apk-path": "translate/app_yandex-translate.apk"
+    },
+    {
+      "id": "A25",
+      "name": "iTranslate",
+      "package": "at.nk.tools.iTranslate",
+      "launch-activity": "com.sonicomobile.itranslate.app.activities.NavigationActivity",
+      "apk-path": "translate/app_iTranslate.apk"
+    },
+    {
+      "id": "A26",
+      "name": "Wide Camera",
+      "package": "com.lerp.pano",
+      "launch-activity": "com.lerp.panocamera.ui.MainActivity",
+      "apk-path": "camera/app_wide-camera.apk"
+    },
+    {
+      "id": "A27",
+      "name": "Temu",
+      "package": "com.einnovation.temu",
+      "launch-activity": "com.baogong.splash.activity.MainFrameActivity",
+      "apk-path": "shopping/app_Temu.apk"
+    },
+    {
+      "id": "A28",
+      "name": "Warmart",
+      "package": "com.walmart.android",
+      "launch-activity": "com.walmart.glass.integration.splash.SplashActivity",
+      "apk-path": "shopping/app_walmart.apk"
+    },
+    {
+      "id": "A29",
+      "name": "Shopee",
+      "package": "com.shopee.ph",
+      "launch-activity": "com.shopee.app.ui.home.HomeActivity_",
+      "apk-path": "shopping/app_Shopee.apk"
+    },
+    {
+      "id": "A30",
+      "name": "Shein",
+      "package": "com.zzkko",
+      "launch-activity": "com.shein.welcome.WelcomeActivity",
+      "apk-path": "shopping/app_Shein.apk"
+    },
+    {
+      "id": "A31",
+      "name": "Email",
+      "package": "com.android.email",
+      "launch-activity": ".activity.Welcome",
+      "apk-path": "email/app_Email.apk"
+    },
+    {
+      "id": "A32",
+      "name": "yetCalc",
+      "package": "yetzio.yetcalc",
+      "launch-activity": ".MainActivity",
+      "apk-path": "calculate/app_yetCalc.apk"
+    },
+    {
+      "id": "A33",
+      "name": "Calculator-1",
+      "package": "com.sadellie.unitto",
+      "launch-activity": ".MainActivity",
+      "apk-path": "calculate/app_Calculator-1.apk"
+    },
+    {
+      "id": "A34",
+      "name": "Calculator-2",
+      "package": "com.android.calculator2",
+      "launch-activity": "com.huawei.calculator.Calculator",
+      "apk-path": "calculate/app_Calculator-2.apk"
+    },
+    {
+      "id": "A35",
+      "name": "Orange Calculator",
+      "package": "com.orangestudio.calculator",
+      "launch-activity": ".ui.activity.SplashActivity",
+      "apk-path": "calculate/app_Orange-Calculator.apk"
+    },
+    {
+      "id": "A36",
+      "name": "MingCalc",
+      "package": "com.differ.xiaoming",
+      "launch-activity": ".ui.activity.StartActivity",
+      "apk-path": "calculate/app_MingCalc.apk"
+    },
+    {
+      "id": "A37",
+      "name": "Calculator-3",
+      "package": "com.juzipie.supercalculator",
+      "launch-activity": ".ui.activity.SplashActivity",
+      "apk-path": "calculate/app_Calculator-3.apk"
+    },
+    {
+      "id": "A38",
+      "name": "Calculator-inator",
+      "package": "com.inator.calculator",
+      "launch-activity": ".activities.MainActivity",
+      "apk-path": "calculate/app_Calculator-inator.apk"
+    },
+    {
+      "id": "A39",
+      "name": "Omni Notes",
+      "package": "it.feio.android.omninotes",
+      "launch-activity": ".MainActivity",
+      "apk-path": "note/app_OmniNotes.apk"
+    },
+    {
+      "id": "A40",
+      "name": "English-Chinese translation",
+      "package": "com.hhll.translatecnen",
+      "launch-activity": ".activity.StartActivity",
+      "apk-path": "translate/app_English-Chinese-translation.apk"
+    },
+    {
+      "id": "A41",
+      "name": "Privacy Friendly Weather",
+      "package": "org.secuso.privacyfriendlyweather",
+      "launch-activity": ".activities.SplashActivity",
+      "apk-path": "weather/app_pfa-weather.apk"
+    },
+    {
+      "id": "A42",
+      "name": "ZARA",
+      "package": "com.inditex.zara",
+      "launch-activity": ".MainActivityDefaultIcon",
+      "apk-path": "shopping/app_ZARA.apk"
+    },
+    {
+      "id": "A43",
+      "name": "FARFETCH",
+      "package": "com.farfetch.farfetchshop",
+      "launch-activity": ".DefaultAlias",
+      "apk-path": "shopping/app_FARFETCH.apk"
+    },
+    {
+      "id": "A44",
+      "name": "Calculator-4",
+      "package": "com.scottmangiapane.calculatorv2",
+      "launch-activity": ".MainActivity-Blue",
+      "apk-path": "calculate/app_Calculator-4.apk"
+    },
+    {
+      "id": "A45",
+      "name": "Calculator-5",
+      "package": "net.ludeke.calculator",
+      "launch-activity": "com.android.calculator2.Calculator",
+      "apk-path": "calculate/app_Calculator-5.apk"
+    },
+    {
+      "id": "A46",
+      "name": "MultiAlarm",
+      "package": "com.anshmidt.multialarm",
+      "launch-activity": ".activities.MainActivity",
+      "apk-path": "clock/app_Multi-Alarm.apk"
+    },
+    {
+      "id": "A47",
+      "name": "Shake Alarm Clock",
+      "package": "in.basulabs.shakealarmclock",
+      "launch-activity": ".frontend.Activity_AlarmsList",
+      "apk-path": "clock/app_ShakeAlarmClock.apk"
+    },
+    {
+      "id": "A48",
+      "name": "Chrono",
+      "package": "com.vicolo.chrono",
+      "launch-activity": ".MainActivity",
+      "apk-path": "clock/app_chrono.apk"
+    },
+    {
+      "id": "A49",
+      "name": "NFC Alarm Clock",
+      "package": "com.nfcalarmclock",
+      "launch-activity": ".main.NacMainActivity",
+      "apk-path": "clock/app_nfc_alarm_clock.apk"
+    },
+    {
+      "id": "A50",
+      "name": "Alarms",
+      "package": "com.better.alarm",
+      "launch-activity": ".presenter.AlarmsListActivity",
+      "apk-path": "clock/app_AlarmClock.apk"
+    },
+    {
+      "id": "A51",
+      "name": "Clock",
+      "package": "com.android.deskclock",
+      "launch-activity": ".AlarmsMainActivity",
+      "apk-path": "clock/app_Clock.apk"
+    },
+    {
+      "id": "A52",
+      "name": "Simply Translate",
+      "package": "com.simplytranslate_mobile",
+      "launch-activity": ".MainActivity",
+      "apk-path": "translate/app_simplytranslate.apk"
+    },
+    {
+      "id": "A53",
+      "name": "Weather",
+      "package": "com.huawei.android.totemweather",
+      "launch-activity": ".WeatherHome",
+      "apk-path": "weather/app_Weather-4.apk"
+    },
+    {
+      "id": "A54",
+      "name": "MyTranslator",
+      "package": "com.gyr.translator",
+      "launch-activity": ".activity.MainActivity",
+      "apk-path": "translate/app_MyTranslator.apk"
+    },
+    {
+      "id": "A55",
+      "name": "Pixel Camera",
+      "package": "com.google.android.GoogleCamera",
+      "launch-activity": "com.android.camera.CameraLauncher",
+      "apk-path": "camera/app_Pixel-Camera.apk"
+    },
+    {
+      "id": "A56",
+      "name": "HUAWEI Camera",
+      "package": "com.huawei.camera",
+      "launch-activity": "com.huawei.camera",
+      "apk-path": "camera/app_HwCamera.apk"
+    },
+    {
+      "id": "A57",
+      "name": "PROMPT.One translator",
+      "package": "com.promt.hwcn",
+      "launch-activity": "com.promt.pmtappfree.HwTRRUActivity",
+      "apk-path": "translate/app_PROMPTOne-translator.apk"
+    },
+    {
+      "id": "A58",
+      "name": "Translate You",
+      "package": "com.bnyro.translate",
+      "launch-activity": ".ui.MainActivity",
+      "apk-path": "translate/app_translate-you.apk"
+    },
+    {
+      "id": "A59",
+      "name": "Lentil Translator",
+      "package": "dev.atajan.lingva_android",
+      "launch-activity": ".MainActivity",
+      "apk-path": "translate/app_Lentil-Translate.apk"
+    },
+    {
+      "id": "A60",
+      "name": "World Weather",
+      "package": "com.haringeymobile.ukweather",
+      "launch-activity": ".MainActivity",
+      "apk-path": "weather/app_world-weather.apk"
+    },
+    {
+      "id": "A61",
+      "name": "Rain",
+      "package": "com.yoshi.rain",
+      "launch-activity": ".MainActivity",
+      "apk-path": "weather/app_rain.apk"
+    },
+    {
+      "id": "A62",
+      "name": "OSS Weather",
+      "package": "com.akylas.weather",
+      "launch-activity": ".MainActivity",
+      "apk-path": "weather/app_oss-weather.apk"
+    },
+    {
+      "id": "A63",
+      "name": "HD-Camera",
+      "package": "tools.photo.hd.camera",
+      "launch-activity": "com.android.camera.LaunchActivity",
+      "apk-path": "camera/app_HD-Camera.apk"
+    },
+    {
+      "id": "A64",
+      "name": "Good Weather",
+      "package": "org.asdtm.goodweather",
+      "launch-activity": ".MainActivity",
+      "apk-path": "weather/app_goodweather.apk"
+    },
+    {
+      "id": "A65",
+      "name": "Weather Forecast",
+      "package": "com.aniketjain.weatherapp",
+      "launch-activity": ".SplashScreen",
+      "apk-path": "weather/app_Weather-1.apk"
+    },
+    {
+      "id": "A66",
+      "name": "Camera for Android",
+      "package": "photo.camera.hdcameras",
+      "launch-activity": "com.android.camera.H5View",
+      "apk-path": "camera/app_Camera4Android.apk"
+    },
+    {
+      "id": "A67",
+      "name": "RadarWeather",
+      "package": "org.woheller69.weather",
+      "launch-activity": ".activities.SplashActivity",
+      "apk-path": "weather/app_Weather-3.apk"
+    },
+    {
+      "id": "A68",
+      "name": "Open Weather",
+      "package": "uk.co.openweather",
+      "launch-activity": ".MainActivity",
+      "apk-path": "weather/app_OpenWeather.apk"
+    },
+    {
+      "id": "A69",
+      "name": "BBC Weather",
+      "package": "bbc.mobile.weather",
+      "launch-activity": ".feature.app.ui.MsiActivity",
+      "apk-path": "weather/app_BBC-Weather.apk"
+    },
+    {
+      "id": "A70",
+      "name": "Yahoo Weather",
+      "package": "com.yahoo.mobile.client.android.weather",
+      "launch-activity": ".ui.WeatherMainActivity",
+      "apk-path": "weather/app_Yahoo-Weather.apk"
+    },
+    {
+      "id": "A71",
+      "name": "Calculator-6",
+      "package": "com.google.android.calculator",
+      "launch-activity": "com.android.calculator2.Calculator",
+      "apk-path": "calcualte/app_Calculator-6.apk"
+    },
+    {
+      "id": "A72",
+      "name": "HUAWEI Notepad",
+      "package": "com.example.android.notepad",
+      "launch-activity": ".NotePadActivity",
+      "apk-path": "note/app_HwNotePad.apk"
+    },
+    {
+      "id": "A73",
+      "name": "Calculator-8",
+      "package": "com.miui.calculator",
+      "launch-activity": ".cal.CalculatorActivity",
+      "apk-path": "calcualte/app_Calculator-8.apk"
+    },
+    {
+      "id": "A74",
+      "name": "ClevCalc",
+      "package": "com.dencreak.dlcalculator",
+      "launch-activity": ".DLCalculatorActivity",
+      "apk-path": "calcualte/app_ClevCalc.apk"
+    },
+    {
+      "id": "A75",
+      "name": "Mobi Calculator",
+      "package": "my.android.calc",
+      "launch-activity": ".MainActivity",
+      "apk-path": "calcualte/app_Mobi-Calculator.apk"
+    },
+    {
+      "id": "A76",
+      "name": "Hi Translate",
+      "package": "com.zaz.translate",
+      "launch-activity": ".WelcomeActivity",
+      "apk-path": "translate/app_Hi-Translate.apk"
+    },
+    {
+      "id": "A77",
+      "name": "Language Translator iGlot",
+      "package": "ingles.espanol",
+      "launch-activity": ".InitialActivity",
+      "apk-path": "translate/app_Language-Translator-iGlot.apk"
+    },
+    {
+      "id": "A78",
+      "name": "Alarm-Clock-1",
+      "package": "com.macropinch.axe",
+      "launch-activity": ".MainActivity",
+      "apk-path": "clock/app_Alarm-Clock-1.apk"
+    },
+    {
+      "id": "A79",
+      "name": "Alarm-Clock-2",
+      "package": "com.hodoz.alarmclock",
+      "launch-activity": ".activity.MainActivity",
+      "apk-path": "clock/app_Alarm-Clock-2.apk"
+    },
+    {
+      "id": "A80",
+      "name": "Alarm-Clock-3",
+      "package": "hdesign.theclock",
+      "launch-activity": ".MainActivity",
+      "apk-path": "clock/app_Alarm-Clock-3.apk"
+    },
+    {
+      "id": "A81",
+      "name": "Wakey Alarm Clock",
+      "package": "com.sofaking.moonworshipper",
+      "launch-activity": ".ui.main.MainActivity",
+      "apk-path": "clock/app_Wakey-Alarm-Clock.apk"
+    },
+    {
+      "id": "A82",
+      "name": "Notein",
+      "package": "notes.notepad.checklist.calendar.todolist.notebook",
+      "launch-activity": ".page.WelcomeActivity",
+      "apk-path": "note/app_Notein.apk"
+    },
+    {
+      "id": "A83",
+      "name": "ColorNote",
+      "package": "com.socialnmobile.dictapps.notepad.color.note",
+      "launch-activity": "com.socialnmobile.colornote.activity.Main",
+      "apk-path": "note/app_ColorNote.apk"
+    },
+    {
+      "id": "A84",
+      "name": "Qt Notes",
+      "package": "com.lautaro.qtnotes",
+      "launch-activity": ".SplashActivity",
+      "apk-path": "note/app_Qt-Notes.apk"
+    },
+    {
+      "id": "A85",
+      "name": "UpNote",
+      "package": "com.getupnote.android",
+      "launch-activity": ".ui.home.MainActivity",
+      "apk-path": "note/app_UpNote.apk"
+    },
+    {
+      "id": "A86",
+      "name": "Note To Self",
+      "package": "com.makenotetoself",
+      "launch-activity": ".MainActivity",
+      "apk-path": "note/app_Note2Self.apk"
+    },
+    {
+      "id": "A87",
+      "name": "Note",
+      "package": "com.eawedat.note",
+      "launch-activity": ".MainActivity",
+      "apk-path": "note/app_Note-1.apk"
+    },
+    {
+      "id": "A88",
+      "name": "Bee Notes",
+      "package": "xyz.hanks.note",
+      "launch-activity": ".ui.activity.MainActivity",
+      "apk-path": "note/app_Note-2.apk"
+    },
+    {
+      "id": "A89",
+      "name": "Minimal Todo",
+      "package": "com.rubenroy.minimaltodo",
+      "launch-activity": ".MainActivity",
+      "apk-path": "note/app_minimaltodo.apk"
+    },
+    {
+      "id": "A90",
+      "name": "Clear List",
+      "package": "douzifly.list",
+      "launch-activity": ".ui.home.MainActivity",
+      "apk-path": "note/app_clear-list.apk"
+    },
+    {
+      "id": "A91",
+      "name": "Lark Player",
+      "package": "com.dywx.larkplayer",
+      "launch-activity": ".main.MainActivity",
+      "apk-path": "music/app_Lark-Player.apk"
+    },
+    {
+      "id": "A92",
+      "name": "Shazam",
+      "package": "com.shazam.android",
+      "launch-activity": ".activities.SplashActivity",
+      "apk-path": "music/app_Shazam.apk"
+    },
+    {
+      "id": "A93",
+      "name": "Music-Player-1",
+      "package": "com.search.music.mp3.musicplayer",
+      "launch-activity": "com.search.music.ui.main.MainAct",
+      "apk-path": "music/app_Music-Player-1.apk"
+    },
+    {
+      "id": "A94",
+      "name": "Music-Player-2",
+      "package": "com.vmons.mediaplayer.music",
+      "launch-activity": ".activity.SplashActivity",
+      "apk-path": "music/app_Music-Player-2.apk"
+    },
+    {
+      "id": "A95",
+      "name": "Music-Player-3",
+      "package": "media.audioplayer.musicplayer",
+      "launch-activity": "com.ijoysoft.music.activity.WelcomeActivity",
+      "apk-path": "music/app_Music-Player-3.apk"
+    },
+
+
+
+    {
+      "id": "A101",
+      "name": "Apex Weather",
+      "package": "com.anddoes.apex.weather",
+      "launch-activity": "com.amber.lib.apex.weather.ui.main.ApexHomeActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A102",
+      "name": "Weather&Rad",
+      "package": "de.wetteronline.wetterapp",
+      "launch-activity": ".MainActivityGoogle",
+      "apk-path": ""
+    },
+    {
+      "id": "A103",
+      "name": "Gismeteo",
+      "package": "ru.gismeteo.gismeteo",
+      "launch-activity": ".ui.ActMain",
+      "apk-path": ""
+    },
+    {
+      "id": "A104",
+      "name": "RainViewer",
+      "package": "com.lucky_apps.RainViewer",
+      "launch-activity": "com.lucky_apps.rainviewer.DefaultIcon",
+      "apk-path": ""
+    },
+    {
+      "id": "A105",
+      "name": "Foreca",
+      "package": "com.foreca.android.weather",
+      "launch-activity": ".MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A106",
+      "name": "normal notes",
+      "package": "com.pop.notes",
+      "launch-activity": ".MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A107",
+      "name": "easy notes",
+      "package": "easynotes.notes.notepad.notebook.privatenotes.note",
+      "launch-activity": "notes.easy.android.mynotes.ui.activities.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A108",
+      "name": "keep my note",
+      "package": "org.whiteglow.keepmynotes",
+      "launch-activity": ".activity.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A109",
+      "name": "my diary",
+      "package": "mydiary.journal.diary.diarywithlock.diaryjournal.secretdiary",
+      "launch-activity": "app.gulu.mydiary.module.notes.main.NoteMainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A110",
+      "name": "mind notes",
+      "package": "mindnotes.note.notepad.notebook.memo.stickynotes",
+      "launch-activity": "notes.notebook.android.mynotes.ui.activities.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A111",
+      "name": "samsung note",
+      "package": "com.samsung.android.app.notes",
+      "launch-activity": ".memolist.MemoListActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A112",
+      "name": "mind note",
+      "package": "mindnotes.note.notepad.notebook.memo.stickynotes",
+      "launch-activity": "notes.notebook.android.mynotes.ui.activities.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A113",
+      "name": "gnote",
+      "package": "org.dayup.gnotes",
+      "launch-activity": ".NotesListActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A114",
+      "name": "mixnote",
+      "package": "com.domobile.mixnote",
+      "launch-activity": "com.domobile.notes.activity.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A115",
+      "name": "floating note",
+      "package": "com.jsvmsoft.stickynotes",
+      "launch-activity": ".presentation.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A116",
+      "name": "colornote",
+      "package": "com.socialnmobile.dictapps.notepad.color.note",
+      "launch-activity": "com.socialnmobile.colornote.activity.Main",
+      "apk-path": ""
+    },
+    {
+      "id": "A117",
+      "name": "notein",
+      "package": "notes.notepad.checklist.calendar.todolist.notebook",
+      "launch-activity": ".page.MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A118",
+      "name": "notes",
+      "package": "com.ogden.memo",
+      "launch-activity": ".ui.MemoMain",
+      "apk-path": ""
+    },
+    {
+      "id": "A119",
+      "name": "alarm clock",
+      "package": "com.milleniumapps.freealarmclock",
+      "launch-activity": ".MainActivity",
+      "apk-path": ""
+    },
+    {
+      "id": "A120",
+      "name": "turbo alarm",
+      "package": "com.turbo.alarm",
+      "launch-activity": ".MainActivity",
+      "apk-path": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S1",
+      "name": "send email",
+      "description": "send an email to friend",
+      "extra-info": {
+        "friend's email": "example@example.com",
+        "email subject": "\"Give Me a Favor\"",
+        "email content": "\"Please lend me 100 bucks and I'll pay you back next month.\""
+      }
+    },
+    {
+      "id": "S2",
+      "name": "play music",
+      "description": "search and play a song",
+      "extra-info": {
+        "target song": "Turkish March",
+        "requirement": "not finished util the song being played"
+      }
+    },
+    {
+      "id": "S3",
+      "name": "take note",
+      "description": "write a note and save it",
+      "extra-info": {
+        "tomorrow's todo": "see a dentist"
+      }
+    },
+    {
+      "id": "S4",
+      "name": "take photo",
+      "description": "take a photo",
+      "extra-info": {}
+    },
+    {
+      "id": "S5",
+      "name": "translation",
+      "description": "input a sentence and translate it",
+      "extra-info": {
+        "source-language": "English",
+        "target-language": "Chinese",
+        "sentence to be translated": "\"Remote work saves time and money on transportation.\""
+      }
+    },
+    {
+      "id": "S6",
+      "name": "shopping",
+      "description": "add something to shopping cart",
+      "extra-info": {
+        "shopping target": "a men T-shirt"
+      }
+    },
+    {
+      "id": "S7",
+      "name": "login",
+      "description": "login to the account",
+      "extra-info": {
+        "email address": "example@example.com",
+        "password": "example-password",
+        "google account": "example@gmail.com",
+        "requirement": "not finished util successfully signed in"
+      }
+    },
+    {
+      "id": "S8",
+      "name": "calculation",
+      "description": "calculate 8+5",
+      "extra-info": {
+        "rule": "the calculator can be operated only by touching its buttons"
+      }
+    },
+    {
+      "id": "S9",
+      "name": "weather query",
+      "description": "query the weather of a new city",
+      "extra-info": {
+        "target-city-name": "Beijing",
+        "longitude": 116.40,
+        "latitude": 39.91
+      }
+    },
+    {
+      "id": "S10",
+      "name": "set alarm clock",
+      "description": "create a new alarm clock with default settings",
+      "extra-info": {
+        "rule": "input action is forbidden"
+      }
+    }
+  ]
+}
