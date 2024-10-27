@@ -4,20 +4,25 @@ from agent.logger import logger
 
 
 class Memory:
+    """
+    Memory 类用于存储和管理应用的相关信息，包括基本信息、执行的操作和截图等。
+    """
     def __init__(self):
         self.app_name = None
         self.basic_info = None
         self.target_scenario = None
-        self.performed_actions = None
+        self.performed_actions = None  # 已执行的操作列表
         self.current_elements = None
+        # 以下都是截图路径
         self.initial_screenshot: Optional[str] = None
         self.previous_screenshot: Optional[str] = None
         self.current_screenshot: Optional[str] = None
-        self.cached_screenshot: Optional[str] = None
+        self.cached_screenshot: Optional[str] = None  # 缓存的截图路径
         self.previous_screenshot_with_bbox: Optional[str] = None
         self.current_screenshot_with_bbox: Optional[str] = None
-        self.app_package: Optional[str] = None
-        self.app_launch_activity: Optional[str] = None
+
+        self.app_package: Optional[str] = None  # 应用包名
+        self.app_launch_activity: Optional[str] = None  # 应用启动活动名称
 
     def add_basic_info(self, info: Dict[str, Any]) -> None:
         """set private data in test, e.g., email address, password"""
