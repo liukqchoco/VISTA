@@ -23,10 +23,18 @@ from agent.utils import (
 
 
 class ActionDecider:
+    """
+    ActionDecider 类负责根据用户交互和当前应用状态，
+    通过大语言模型 (LLM) 决策下一步操作。
+    """
     def __init__(self, chat_manager: LLMChatManager):
+        """
+        初始化 ActionDecider 类，设置聊天管理器和默认的决策阶段。
+        :param chat_manager: LLMChatManager 实例，用于管理对话
+        """
         self.chat_manager = chat_manager
         self.stage = "action-decision"
-        self.enable_text_match = True
+        self.enable_text_match = True  # 启用文本匹配功能
 
     def next_action(
             self,
@@ -34,6 +42,13 @@ class ActionDecider:
             correcting: bool = False,
             situation: Optional[str] = None,
     ) -> Optional[Dict[str, Any]]:
+        """
+        根据当前应用状态和用户操作决策下一步动作。
+        :param memory: Memory 实例，包含应用的当前状态和历史操作
+        :param correcting: 是否重新决策，默认 False
+        :param situation: 重新决策时描述的特定情况
+        :return: 包含操作信息的字典或 None
+        """
         if not correcting:
             sys_prompt = system_prompt_next_action(memory=memory)
             user_prompt = user_prompt_next_action(memory=memory)
@@ -46,6 +61,7 @@ class ActionDecider:
             user_message = user_prompt_modify_next_action(situation)
             logger.info("Re-Deciding Next Action")
 
+        # 获取大语言模型的回复
         response, p_usage, r_usage = self.chat_manager.get_response(
             stage=self.stage,
             model="gpt-4-vision-preview",
@@ -54,8 +70,10 @@ class ActionDecider:
         )
         logger.info("Action Decision Received.")
         logger.info(f"Token Cost: {p_usage} + {r_usage}")
+        # 记录详细回复
         logger.debug(f"Response: ```{response}```")
 
+        # 从回复中提取操作
         action = extract_json(response)
         if action is None \
                 or action.get("intent") is None \
@@ -72,18 +90,25 @@ class ActionDecider:
             action: Dict[str, Any],
             repeat_times: int = 0,
     ) -> Optional[Dict[str, Any]]:
+        """
+        确认或修正下一步操作，支持文本和视觉匹配。
+        :param memory: Memory 实例，包含应用的当前状态和历史操作
+        :param action: 预定的操作
+        :param repeat_times: 确认次数，默认 0
+        :return: 确认后的操作字典或 None
+        """
         if repeat_times > 2:
             logger.error("Repeat Confirming Too Many Times")
             return None
 
-        # directly return `back` and `scroll` action
+        # 直接返回无需目标组件的操作，如 'back' 和 'scroll'
         if action["action-type"] == "back" or action["action-type"] == "scroll":
             logger.info(f"Action {action['action-type']} requires no target widget")
             action["target-widget"] = None
             return action
 
         # action-type: input / touch
-        # try to match target widget by text
+        # 尝试通过文本匹配目标组件
         matched_element = None
         if action.get("target-widget") is not None and self.enable_text_match:
             for element in memory.current_elements:
@@ -96,18 +121,18 @@ class ActionDecider:
                         matched_element = element
                         break
         if matched_element is not None:
-            # successfully matched
+            # 成功匹配到目标组件
             matched_element["description"] = action["target-widget"]
             action["target-widget"] = matched_element
             logger.info("Target Widget Found By Text Matching")
-            # add match context
+            # 添加匹配上下文
             user_prompt = user_prompt_confirm_next_action()
             user_message = {"text": user_prompt, "image": memory.current_screenshot_with_bbox}
             self.chat_manager.context_pool[self.stage].append_user_message(user_message)
             self.chat_manager.context_pool[self.stage].append_assistant_message(
                 f"Widget: {{\"target-widget-number\": {matched_element['id']}}}"
             )
-            # confirm touch position for input action
+            # 确认输入操作的位置
             if action["action-type"] == "input":
                 w_id = action["target-widget"]["id"]
                 user_prompt = user_prompt_confirm_input_action(w_id)
@@ -126,6 +151,7 @@ class ActionDecider:
                 logger.info("Confirm Result Received")
                 logger.debug(f"Response: ```{response}```")
 
+                # 从回复中提取位置信息
                 position = extract_json(response)
                 if position is None \
                         or position.get("position") is None \
@@ -136,7 +162,7 @@ class ActionDecider:
                     action["position"] = position["position"]
             return action
 
-        # try to match target widget by vision (gpt4-v)
+        # 尝试通过视觉识别匹配目标组件
         user_prompt = user_prompt_confirm_next_action()
         user_message = {"text": user_prompt, "image": memory.current_screenshot_with_bbox}
         logger.info("Querying Target Widget")
@@ -149,7 +175,7 @@ class ActionDecider:
         logger.info(f"Token Cost: {p_usage} + {r_usage}")
         logger.debug(f"Response: ```{response}```")
 
-        # extract widget number
+        # 从回复中提取组件编号
         widget = extract_json(response)
         if widget is None or widget.get("target-widget-number") is None:
             logger.error("No Widget Number Found")
@@ -271,8 +297,15 @@ class ActionDecider:
         return action
 
     def rematch_next_action(self, memory: Memory) -> Optional[Dict[str, Any]]:
+        """
+        尝试重新匹配目标组件，并根据视觉或文本结果进行决策调整。
+        :param memory: Memory 实例，包含应用的当前状态和历史操作
+        :return: 确认后的操作字典或 None
+        """
+        # 获取最近执行的操作
         action = memory.performed_actions[-1]
         if action["target-widget"]["id"] != -1:
+            # 如果已有有效的目标组件 ID，则重新匹配
             user_message = user_prompt_rematch_widget()
 
             logger.info("Rematching Target Widget")
@@ -290,7 +323,7 @@ class ActionDecider:
                 logger.error("No Widget Number Found")
                 return None
 
-            # no widget matched, predict location
+            # 没有匹配到组件，尝试通过视觉重新预测位置
             if int(widget["target-widget-number"]) == -1:
                 logger.warning("No Widget Rematched")
                 if action["action-type"] == "input":
@@ -331,7 +364,7 @@ class ActionDecider:
                 action["position"] = location["position"]
                 return action
 
-            # widget matched, get matched widget
+            # 成功匹配到组件
             for element in memory.current_elements:
                 if element["id"] == int(widget["target-widget-number"]):
                     if action["target-widget"].get("description") is not None:
@@ -374,6 +407,7 @@ class ActionDecider:
                     action["position"] = position["position"]
             return action
         else:
+            # 如果没有有效的组件 ID，则重新预测位置
             user_message = user_prompt_fix_location()
 
             logger.info("Re-predicting Target Widget Location")
@@ -407,6 +441,11 @@ class ActionDecider:
             return action
 
     def issue_feedback(self, need_back: bool) -> Optional[int]:
+        """
+        获取操作反馈，分析执行结果。
+        :param need_back: 如果需要返回操作，则为 True
+        :return: 反馈的情境编号或 None
+        """
         self.chat_manager.context_pool["temporary"].refresh()
         self.chat_manager.context_pool["temporary"].copy_from(
             self.chat_manager.context_pool[self.stage]

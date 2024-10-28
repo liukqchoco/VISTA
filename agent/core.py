@@ -14,7 +14,15 @@ from agent.roles.supervisor import TestSupervisor
 
 
 class TestAgent:
+    """
+    TestAgent 类用于自动化测试流程，包括应用初始化、执行步骤控制、错误处理等操作。
+    """
     def __init__(self, device_manager: DeviceManager, base_dir: str):
+        """
+        初始化 TestAgent 实例，设置所有角色和状态。
+        :param device_manager: DeviceManager 实例，用于控制设备操作
+        :param base_dir: 基础目录路径，用于存储数据
+        """
         self.state = "UNINITIALIZED"
         self.app = None
         self.scenario = None
@@ -39,6 +47,12 @@ class TestAgent:
         ]
 
     def initialize(self, app_id: str, scenario_id: str, rotate_angle: int = 0):
+        """
+        初始化 TestAgent，根据给定的应用和场景 ID 设置目标应用和场景，并启动应用。
+        :param app_id: 应用的 ID
+        :param scenario_id: 场景的 ID
+        :param rotate_angle: 设备屏幕旋转角度（可选）
+        """
         if self.state == "UNINITIALIZED":
             logger.info("Initializing TestAgent")
             self.state = "INITIALIZED"
@@ -60,6 +74,10 @@ class TestAgent:
             logger.warning("TestAgent has already been initialized")
 
     def step(self) -> Optional[Any]:
+        """
+        控制 TestAgent 的步骤执行流程，根据当前状态决定下一步操作。
+        :return: 如果流程结束返回 None，否则继续执行
+        """
         if self.state == "UNINITIALIZED":
             _continue = self._state_uninitialized()
             if not _continue:
@@ -106,6 +124,9 @@ class TestAgent:
         return None
 
     def report_self(self):
+        """
+        输出当前状态的报告，并在失败或结束时生成测试脚本。
+        """
         meta_info = {
             "resize-ratio": self.device_manager.resize_ratio,
             "device-width": self.device_manager.device.width,
@@ -132,20 +153,32 @@ class TestAgent:
             logger.info(f"Agent State: {self.state}. TestING...")
 
     def _state_uninitialized(self) -> bool:
+        """
+        处理 UNINITIALIZED 状态，返回 False 表示初始化失败。
+        """
         logger.waring(f"TestAgent State: {self.state}")
         return False
 
     def _state_initialized(self) -> bool:
+        """
+        处理 INITIALIZED 状态，转移到 OBSERVING 状态。
+        """
         self.state = "OBSERVING"
         return True
 
     def _state_executing(self) -> bool:
+        """
+        执行已决定的操作，并记录操作，转移到 LOAD-CHECKING 状态。
+        """
         # call function to execute decided action and record the action
         self.executor.execute(self.memory)
         self.state = "LOAD-CHECKING"
         return True
 
     def _state_load_checking(self) -> bool:
+        """
+        检查页面是否仍在加载，处理加载失败或成功的逻辑。
+        """
         if self.loading_check_fail_count > 2:
             self.loading_check_fail_count = 0
             self.state = "EFFECT-CHECKING"
@@ -168,6 +201,9 @@ class TestAgent:
             return True
 
     def _state_effect_checking(self) -> bool:
+        """
+        检查页面的效果变化，处理需要返回的情况，或转移到下一状态。
+        """
         valid, need_back = self.supervisor.check_effect(self.memory)
         if valid is None:
             self.state = "ERROR"
@@ -186,6 +222,9 @@ class TestAgent:
         return True
 
     def _state_end_checking(self) -> bool:
+        """
+        检查测试是否已完成，生成报告并结束。
+        """
         test_end = self.supervisor.check_end(self.memory)
         if test_end is None:
             self.state = "ERROR"
@@ -201,6 +240,9 @@ class TestAgent:
             return True
 
     def _state_observing(self) -> bool:
+        """
+        观察当前屏幕内容，检测元素，确定下一步操作并准备执行。
+        """
         self.memory.save_screenshot(self.memory.cached_screenshot)
         self.memory.cached_screenshot = None
         # 1. send original image and prompt to llm, decide next action
@@ -224,6 +266,9 @@ class TestAgent:
         return False
 
     def _state_correcting(self) -> bool:
+        """
+        修正测试中出现的错误，根据问题类型重新执行或调整操作。
+        """
         last_action = self.memory.performed_actions[-1]
         if last_action["action-type"] == "back" and last_action["intent"] == "NEED-BACK":
             self.memory.remove_last_action()

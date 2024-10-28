@@ -4,13 +4,20 @@ from typing import Any, Dict, List, Optional
 
 
 def gen_timestamp() -> str:
-    """Generate timestamp"""
+    """
+    生成当前的时间戳字符串。
+    :return: 当前时间戳的字符串形式
+    """
     timestamp = int(time.time())
     return str(timestamp)
 
 
 def extract_json(s: str) -> Optional[Dict[str, Any]]:
-    """Extract json from string"""
+    """
+    从字符串中提取 JSON 对象并返回。
+    :param s: 包含 JSON 数据的字符串
+    :return: 提取出的 JSON 对象，若无有效的 JSON 对象则返回 None
+    """
     print_len_limit = min(len(s), 20)
     stack = []
     json_start_index = None
@@ -34,7 +41,12 @@ def extract_json(s: str) -> Optional[Dict[str, Any]]:
 
 
 def remove_punctuation(s: str, more_punc: Optional[List[str]] = None) -> str:
-    """Remove punctuation marks from string"""
+    """
+    从字符串中移除标点符号。
+    :param s: 输入的字符串
+    :param more_punc: 额外需要移除的标点符号列表
+    :return: 移除标点后的字符串
+    """
     punctuation = [',', '.', ':', ';', '_']
     if more_punc is not None:
         punctuation.extend(more_punc)
@@ -44,6 +56,12 @@ def remove_punctuation(s: str, more_punc: Optional[List[str]] = None) -> str:
 
 
 def literally_related(s1: str, s2: str) -> bool:
+    """
+    判断两个字符串是否在字面上相关（逐字比较）。
+    :param s1: 第一个字符串
+    :param s2: 第二个字符串
+    :return: 如果相关则返回 True，否则返回 False
+    """
     s1 = s1.lower()
     s2 = s2.lower()
     if not s1.startswith(s2) or not s2.startswith(s1):

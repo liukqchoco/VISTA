@@ -4,15 +4,22 @@ from agent.memory import Memory
 
 
 def system_prompt_next_action(memory: Memory) -> str:
+    """
+   生成系统提示，描述当前的任务场景和用户可以执行的操作类型。
+   :param memory: Memory 实例，用于获取应用名称、目标场景和用户基本信息
+   :return: 包含系统提示的字符串
+   """
     system_prompt = (
         "You are a helpful assistant to guide a user "
         f"to accomplish the task **{memory.target_scenario}** "
         f"on a mobile application named {memory.app_name}.\n\n"
     )
+    # 如果存在用户基本信息，则添加到提示中
     system_prompt += (
         "The basic information about the user is as follows:\n"
         f"{memory.describe_basic_info()}\n\n"
     ) if memory.describe_basic_info() is not None else ""
+    # 描述用户可以执行的操作类型
     system_prompt += (
         "The user can perform the following types of actions:\n"
         "- Touch a clickable widget (action-type: touch)\n"
@@ -24,7 +31,13 @@ def system_prompt_next_action(memory: Memory) -> str:
 
 
 def user_prompt_next_action(memory: Memory) -> str:
+    """
+    生成用户提示，引导选择下一个合适的操作。
+    :param memory: Memory 实例，用于获取当前已执行的操作和截图
+    :return: 包含用户提示的字符串
+    """
     prompt = ""
+    # 检查是否已有执行的操作，如果没有，提示未执行操作
     if memory.performed_actions is None:
         prompt += "I have performed no actions.\n"
     else:
@@ -32,6 +45,7 @@ def user_prompt_next_action(memory: Memory) -> str:
             f"The actions I have performed are as follows:\n"
             f"{memory.describe_performed_actions()}\n"
         )
+    # 提示用户根据当前页面选择下一个合适的操作
     prompt += (
         "And here is the screenshot of the current page.\n"
         "\n"
@@ -56,6 +70,10 @@ def user_prompt_next_action(memory: Memory) -> str:
 
 
 def user_prompt_confirm_next_action() -> str:
+    """
+    生成用户提示，引导确认目标组件。
+    :return: 包含确认目标组件的提示字符串
+    """
     return (
         "This image displays the widget detection result of the current page's screenshot.\n"
         "Each widget is outlined in a green bounding box and"
@@ -72,6 +90,10 @@ def user_prompt_confirm_next_action() -> str:
 
 
 def user_prompt_analyze_missing_widget() -> str:
+    """
+    生成用户提示，引导分析目标组件缺失的原因。
+    :return: 包含分析组件缺失的提示字符串
+    """
     return (
         "Reflect on the action you selected,"
         " choose why the target widget is missing from the following options:\n"
@@ -86,6 +108,11 @@ def user_prompt_analyze_missing_widget() -> str:
 
 
 def user_prompt_confirm_input_action(target_widget_id: Optional[int] = None) -> str:
+    """
+    生成用户提示，引导确认输入操作的位置。
+    :param target_widget_id: 目标组件的编号，默认为 None
+    :return: 包含确认输入位置的提示字符串
+    """
     if target_widget_id is not None:
         return (
             "This image displays the widget detection result of the current page's screenshot.\n"
@@ -123,6 +150,10 @@ def user_prompt_confirm_input_action(target_widget_id: Optional[int] = None) -> 
 
 
 def user_prompt_confirm_touch_action() -> str:
+    """
+    生成用户提示，引导确认触摸操作的位置。
+    :return: 包含确认触摸位置的提示字符串
+    """
     return (
         "Since the target widget is missing, I need you to tell me "
         "the most possible location to perform the touch action. "
@@ -136,6 +167,11 @@ def user_prompt_confirm_touch_action() -> str:
 
 
 def user_prompt_modify_next_action(situation: str) -> str:
+    """
+    生成用户提示，引导用户根据特定情况重新选择操作。
+    :param situation: 描述重新选择操作的场景
+    :return: 包含修改操作的提示字符串
+    """
     return (
         "The action you described is not working.\n"
         f"The situation is: **{situation}**\n"
@@ -154,6 +190,10 @@ def user_prompt_modify_next_action(situation: str) -> str:
 
 
 def user_prompt_rematch_widget() -> str:
+    """
+    生成用户提示，引导重新匹配目标组件。
+    :return: 包含重新匹配组件的提示字符串
+    """
     return (
         "The target-widget-number you offered proves wrong.\n"
         "You made a mistake in matching the true target widget with its number.\n"
@@ -162,6 +202,10 @@ def user_prompt_rematch_widget() -> str:
 
 
 def user_prompt_fix_location() -> str:
+    """
+    生成用户提示，引导修正位置描述。
+    :return: 包含修正位置的提示字符串
+    """
     return (
         "The location you described proves wrong.\n"
         "I need a new description of the most possible location to perform the action.\n"
@@ -170,6 +214,11 @@ def user_prompt_fix_location() -> str:
 
 
 def user_prompt_analyze_situation(need_back: bool) -> str:
+    """
+    生成用户提示，引导分析操作失败的情况。
+    :param need_back: 如果操作导致页面跳转到无关页面，则为 True
+    :return: 包含分析情况的提示字符串
+    """
     task_prompt = "The execution result of the action you selected is "
     if need_back:
         task_prompt += "not task-oriented. The app page changed to an unrelated page.\n"

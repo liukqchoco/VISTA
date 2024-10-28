@@ -15,7 +15,14 @@ from agent.prompt.supervisor import (
 
 
 class TestSupervisor:
+    """
+    TestSupervisor 类用于监控测试流程，通过 LLM 对不同场景下的页面加载、结束和效果变化进行检查。
+    """
     def __init__(self, chat_manager: LLMChatManager):
+        """
+        初始化 TestSupervisor 实例，设置检查阶段和聊天管理器。
+        :param chat_manager: LLMChatManager 实例，用于处理不同阶段的对话上下文
+        """
         self.chat_manager = chat_manager
         self.stage_load = "loading-check"
         self.stage_end = "ending-check"
@@ -23,6 +30,11 @@ class TestSupervisor:
         self.stage_valid_change = "valid-change-check"
 
     def check_loading(self, memory: Memory) -> Optional[bool]:
+        """
+        检查当前页面是否处于加载状态。
+        :param memory: Memory 实例，用于提供必要的上下文信息
+        :return: 如果加载中返回 True, 否则返回 False; 格式错误则返回 None
+        """
         sys_prompt = system_prompt_loading_check()
         user_prompt = user_prompt_loading_check()
         user_message = {"text": user_prompt, "image": memory.cached_screenshot}
@@ -59,6 +71,11 @@ class TestSupervisor:
             return None
 
     def check_end(self, memory: Memory) -> Optional[bool]:
+        """
+        检查当前操作是否已结束。
+        :param memory: Memory 实例，用于提供必要的上下文信息
+        :return: 如果结束返回 True, 否则返回 False; 格式错误则返回 None
+        """
         sys_prompt = system_prompt_ending_check(memory)
         task_prompt, prev_screen_prompt, curr_screen_prompt, init_screen_prompt \
             = user_prompt_ending_check(memory)
@@ -105,6 +122,11 @@ class TestSupervisor:
             return None
 
     def check_effect(self, memory: Memory) -> Tuple[Optional[bool], Optional[bool]]:
+        """
+        检查页面是否有预期的效果变化，返回页面变化和有效变化的状态。
+        :param memory: Memory 实例，用于提供必要的上下文信息
+        :return: (是否有效变化, 是否页面变化)
+        """
         valid_change = self._check_valid_page_change(memory)
         if valid_change is None:
             return None, None
@@ -118,7 +140,11 @@ class TestSupervisor:
         return False, False
 
     def _check_page_change(self, memory: Memory) -> Optional[bool]:
-        """check if the page changes"""
+        """
+        检查页面是否发生了变化。
+        :param memory: Memory 实例，用于提供必要的上下文信息
+        :return: 如果页面变化返回 True, 否则返回 False; 格式错误则返回 None
+        """
         sys_prompt = system_prompt_effect_check()
         task_prompt, prev_screen_prompt, curr_screen_prompt = user_prompt_page_change_check()
         prev_screen_message = {"text": prev_screen_prompt, "image": memory.current_screenshot}
@@ -161,7 +187,11 @@ class TestSupervisor:
             return None
 
     def _check_valid_page_change(self, memory: Memory) -> Optional[bool]:
-        """check if the page makes scenario-oriented change"""
+        """
+        检查页面是否发生了符合场景的有效变化。
+        :param memory: Memory 实例，用于提供必要的上下文信息
+        :return: 如果有效变化返回 True, 否则返回 False; 格式错误则返回 None
+        """
         sys_prompt = system_prompt_effect_check()
         task_prompt, prev_screen_prompt, curr_screen_prompt, init_screen_prompt \
             = user_prompt_valid_change_check(memory)
