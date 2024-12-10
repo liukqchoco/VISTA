@@ -4,6 +4,7 @@
 - 第一次运行请在项目根目录手动创建/data/chat,/data/input,/data/log,/data/output,/data/script文件夹
 - 请手动创建/ip, /merge, /ocr文件夹
 - 请手动修改/agent/uied/detect.py的18-20行，把这个路径换成自己的路径（模仿现有格式即可）
+- 请手动修改/agent/llm的4-5行，把代理更换成本机代理
 - 特别注意：项目路径**禁止**包含中文，经过尝试发现cv2包无法读取中文路径下的图片qwq
 
 ## 说明文档
