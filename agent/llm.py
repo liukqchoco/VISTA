@@ -1,11 +1,17 @@
+import os
+
+# 设置代理
+os.environ["HTTP_PROXY"] = "http://127.0.0.1:10809"
+os.environ["HTTPS_PROXY"] = "http://127.0.0.1:10809"
+
 import base64
 from typing import Any, Dict, List, Optional, Union
 
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://openkey.cloud/v1",
-    api_key="sk-pgdhvw45N9ZvoOVgBb323e7953Cb415f8b7a3837A71e6c35"
+    base_url="https://api.openai.com/v1",
+    api_key="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"
 )
 
 def encode_image(image_path: str):
@@ -267,7 +273,8 @@ class LLMChatManager:
         messages = target_context.messages()
         # 使用 OpenAI 客户端请求对话模型生成回复
         response = client.chat.completions.create(
-            model=model,
+            model="gpt-4o",
+            # model=model,
             messages=messages,
             temperature=temperature,
             max_tokens=max_tokens,

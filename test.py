@@ -14,7 +14,7 @@ if __name__ == "__main__":
     base_dir = os.path.dirname(__file__)
     dm = DeviceManager(device=device, base_dir=base_dir)
     agent = TestAgent(device_manager=dm, base_dir=base_dir)
-    agent.initialize(app_id="A104", scenario_id="S9")  # 113.115 wrong
+    agent.initialize(app_id="A23", scenario_id="S5")  # 113.115 wrong
 
     print("Please open the app and direct it to the initial page of the scenario.")
     input("Press enter to start the test...")

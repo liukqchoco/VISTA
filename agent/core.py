@@ -116,6 +116,8 @@ class TestAgent:
             if not _continue:
                 return None
 
+
+
         if self.state == "OBSERVING":  # 2
             _continue = self._state_observing()
             if not _continue:

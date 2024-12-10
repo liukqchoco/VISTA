@@ -1,4 +1,12 @@
 # VISTA: Vision-Integrated Scenario-aware GUI Testing with VLM Agents
+
+## 运行项目
+- 第一次运行请在项目根目录手动创建/data/chat,/data/input,/data/log,/data/output,/data/script文件夹
+- 请手动创建/ip, /merge, /ocr文件夹
+- 请手动修改/agent/uied/detect.py的18-20行，把这个路径换成自己的路径（模仿现有格式即可）
+- 特别注意：项目路径**禁止**包含中文，经过尝试发现cv2包无法读取中文路径下的图片qwq
+
+## 说明文档
 - 借助GPT大概写了一个说明文档，但是GPTemm错的太多了，我也没办法把整个项目输进去，只是大量的手写prompt+一些关键代码，导致GPT的结果较差
 - 在修改之后，我大概总结为了以下两个部分，供大家参考理解
 - 其中我之前主要负责的是LLM agent的交互部分，包括supervisor, decider（就是roles文件夹底下的那些）等等，但是observer不是我写的，是基于UIED库魔改的，这里我也不太懂emm，可以大家一起看看
