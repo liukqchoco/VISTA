@@ -11,6 +11,8 @@ from agent.prompt.supervisor import (
     user_prompt_loading_check,
     user_prompt_page_change_check,
     user_prompt_valid_change_check,
+    user_prompt_observation_suggestion,
+    user_prompt_correction_suggestion,
 )
 
 
@@ -116,6 +118,17 @@ class TestSupervisor:
         if response[8] == "T":  # answer: T/F\n
             return True
         elif response[8] == "F":
+            suggestion_prompt = user_prompt_observation_suggestion(task_prompt, response)
+            logger.info("Start Suggestion Generation for observation")
+            response, p_usage, r_usage = self.chat_manager.get_response(
+                stage=self.stage_end,
+                model="gpt-4-vision-preview",
+                prompt=suggestion_prompt,
+            )
+            logger.info("Suggestion Generation Result Received")
+            logger.info(f"Token Cost: {p_usage} + {r_usage}")
+            logger.debug(f"Response: ```{response}```")
+            memory.push_suggestion(response)
             return False
         else:
             logger.error("Invalid Response Format")
@@ -232,6 +245,17 @@ class TestSupervisor:
         if response.startswith("answer: YES"):
             return True
         elif response.startswith("answer: NO"):
+            suggestion_prompt = user_prompt_correction_suggestion(task_prompt, response)
+            logger.info("Start Suggestion Generation for correction")
+            response, p_usage, r_usage = self.chat_manager.get_response(
+                stage=self.stage_end,
+                model="gpt-4-vision-preview",
+                prompt=suggestion_prompt,
+            )
+            logger.info("Suggestion Generation Result Received")
+            logger.info(f"Token Cost: {p_usage} + {r_usage}")
+            logger.debug(f"Response: ```{response}```")
+            memory.push_suggestion(response)
             return False
         else:
             logger.error("Invalid Response Format")

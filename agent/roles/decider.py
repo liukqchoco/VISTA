@@ -61,6 +61,10 @@ class ActionDecider:
             user_message = user_prompt_modify_next_action(situation)
             logger.info("Re-Deciding Next Action")
 
+        suggestion = memory.pop_suggestion()
+        user_message["text"] += (f"\n\nBelow is the suggestion from the last decision"
+                                     f" that may help you better understand the situation:\n\n{suggestion}")
+
         # 获取大语言模型的回复
         response, p_usage, r_usage = self.chat_manager.get_response(
             stage=self.stage,
@@ -308,6 +312,11 @@ class ActionDecider:
             # 如果已有有效的目标组件 ID，则重新匹配
             user_message = user_prompt_rematch_widget()
 
+            suggestion = memory.pop_suggestion()
+            if suggestion is not None:
+                user_message += (f"\n\nBelow is the suggestion from the last decision"
+                                 f" that may help you better match the target widget:\n\n{suggestion}")
+
             logger.info("Rematching Target Widget")
             response, p_usage, r_usage = self.chat_manager.get_response(
                 stage=self.stage,
@@ -409,6 +418,10 @@ class ActionDecider:
         else:
             # 如果没有有效的组件 ID，则重新预测位置
             user_message = user_prompt_fix_location()
+
+            suggestion = memory.pop_suggestion()
+            user_message += (f"\n\nBelow is the suggestion from the last decision"
+                                 f" that may help you better navigate:\n\n{suggestion}")
 
             logger.info("Re-predicting Target Widget Location")
             response, p_usage, r_usage = self.chat_manager.get_response(

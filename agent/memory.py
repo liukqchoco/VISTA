@@ -13,6 +13,7 @@ class Memory:
         self.target_scenario = None
         self.performed_actions = None  # 已执行的操作列表
         self.current_elements = None
+        self.suggestions = None
         # 以下都是截图路径
         self.initial_screenshot: Optional[str] = None
         self.previous_screenshot: Optional[str] = None
@@ -108,3 +109,15 @@ class Memory:
         else:
             logger.error(f"Unknown action: {action_type}")
         return action_str
+
+    def push_suggestion(self, suggestion: str) -> None:
+        """append new suggestion"""
+        if self.suggestions is None:
+            self.suggestions = []
+        self.suggestions.append(suggestion)
+
+    def pop_suggestion(self) -> str:
+        """pop last suggestion"""
+        if self.suggestions is not None and len(self.suggestions) > 0:
+            return self.suggestions.pop()
+        return "No suggestions yet."

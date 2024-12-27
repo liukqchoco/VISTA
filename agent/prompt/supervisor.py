@@ -124,3 +124,26 @@ def user_prompt_valid_change_check(memory: Memory) -> Tuple[str, str, str, str]:
     curr_screenshot_prompt = "This is the current GUI screen."
     init_screenshot_prompt = "This is the initial GUI screen."
     return task_prompt, prev_screenshot_prompt, curr_screenshot_prompt, init_screenshot_prompt
+
+def user_prompt_observation_suggestion(task_prompt: str, response: str) -> str:
+    return (
+        "You've checked the GUI screens and judged whether the following task has been completed.\n"
+        f" The task is **{task_prompt}**.\n"
+        f"Your answer is **{response}**.\n"
+        "Now that you consider the task has not been completed,"
+        " please provide a suggestion to an assistant on observing the GUI screens"
+        " to rematch a widget or repredict the position of a widget.\n"
+        " Your suggestion should be specific, actionable and formal for another agent to follow."
+    )
+
+
+def user_prompt_correction_suggestion(task_prompt: str, response: str) -> str:
+    return (
+        "You've checked the GUI screens and judged whether the following task has been completed.\n"
+        f" The task is **{task_prompt}**.\n"
+        f"Your answer is **{response}**.\n"
+        "Now that you consider the task has not been completed,"
+        " please provide a suggestion to an assistant on re-deciding the action"
+        " to correct the execution of the task.\n"
+        " Your suggestion should be specific, actionable and formal for another agent to follow."
+    )
