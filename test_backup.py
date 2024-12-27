@@ -1,3 +1,4 @@
+import json
 import os
 from flask import Flask, request, jsonify, url_for
 import shutil
@@ -6,6 +7,23 @@ from agent.core import TestAgent
 from agent.device import Device, DeviceManager
 
 
+def unpack_config(app_id: str, scenario_id: str) -> dict:
+    with open("agent/conf.json", "r") as f:
+        configs = json.load(f)
+    app_config = [x for x in configs["apps"] if x["id"] == app_id]
+    if len(app_config) == 0:
+        raise ValueError(f"App config with id {app_id} not found.")
+    scenario_config = [x for x in configs["scenarios"] if x["id"] == scenario_id]
+    if len(scenario_config) == 0:
+        raise ValueError(f"Scenario config with id {scenario_id} not found.")
+    return {
+        "app_name": app_config[0]["name"],
+        "app_package": app_config[0]["package"],
+        "app_launch_activity": app_config[0]["launch-activity"],
+        "scenario_name": scenario_config[0]["name"],
+        "scenario_description": scenario_config[0]["description"],
+        "scenario_extra_info": scenario_config[0]["extra-info"],
+    }
 
 
 if __name__ == "__main__":
@@ -19,12 +37,7 @@ if __name__ == "__main__":
     dm = DeviceManager(device=device, base_dir=base_dir)
     agent = TestAgent(device_manager=dm, base_dir=base_dir)
 
-    scenario_extra_info={
-        "source-language": "English",
-        "target-language": "Chinese",
-        "sentence to be translated": "\"Remote work saves time and money on transportation.\""
-    }
-    agent.initialize(app_name="DeepL Translator", app_package="com.deepl.mobiletranslator", app_launch_activity=".MainActivity", scenario_name="translation", scenario_description="input a sentence and translate it", scenario_extra_info=scenario_extra_info)  # 113.115 wrong
+    agent.initialize(**unpack_config("A23", "S5"))  # 113.115 wrong
 
     print("Please open the app and direct it to the initial page of the scenario.")
     input("Press enter to start the test...")
