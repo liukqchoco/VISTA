@@ -53,10 +53,6 @@ def step():
     try:
         shared_agent.step()
 
-        if shared_agent.state == "END":
-            return jsonify({"message": "GUI testing ends successfully."}), 201
-        if shared_agent.state in ["FAILED", "ERROR"]:
-            return jsonify({"message": "Sorry, GUI testing failed. Please try again."}), 202
 
         # 截图放到static里面，构建可访问url
         screenshot_path = shared_agent.memory.current_screenshot
@@ -72,6 +68,12 @@ def step():
         shutil.copy(screenshot_path, new_screenshot_path)
         shutil.copy(screenshot_with_bbox_path, new_screenshot_with_bbox_path)
 
+        status_code = 200
+        if shared_agent.state == "END":
+            status_code = 201
+        if shared_agent.state in ["FAILED", "ERROR"]:
+            status_code = 202
+
         return jsonify(
             {
                 "screenshot": url_for('static', filename=f'screenshots/{screenshot_filename}', _external=True),
@@ -82,7 +84,7 @@ def step():
                     "target-widget-id": shared_agent.memory.performed_actions[-1].get("target-widget", "/").get("id", "/"),
                 }
             }
-        ), 200
+        ), status_code
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
