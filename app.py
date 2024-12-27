@@ -1,13 +1,16 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, url_for
 import os
 from agent.core import TestAgent
 from agent.device import Device, DeviceManager
 
 app = Flask(__name__)
 
-shared_agent = None
+shared_agent: TestAgent = None
 shared_device = None
 shared_dm = None
+
+STATIC_FOLDER = 'static/screenshots'
+os.makedirs(STATIC_FOLDER, exist_ok=True)
 
 # 初始化环境变量
 os.environ["PATH"] += os.pathsep + "/opt/android/sdk/platform-tools"
@@ -45,7 +48,36 @@ def step():
 
     try:
         shared_agent.step()
-        return jsonify({"state": shared_agent.state, "message": "Step executed."}), 200
+
+        if shared_agent.state == "END":
+            return jsonify({"message": "GUI testing ends successfully."}), 200
+        if shared_agent.state in ["FAILED", "ERROR"]:
+            return jsonify({"message": "Sorry, GUI testing failed. Please try again."}), 500
+
+        # 截图放到static里面，构建可访问url
+        screenshot_path = shared_agent.memory.current_screenshot
+        screenshot_with_bbox_path = shared_agent.memory.current_screenshot_with_bbox
+
+        screenshot_filename = os.path.basename(screenshot_path)
+        screenshot_with_bbox_filename = os.path.basename(screenshot_with_bbox_path)
+
+        new_screenshot_path = os.path.join(STATIC_FOLDER, screenshot_filename)
+        new_screenshot_with_bbox_path = os.path.join(STATIC_FOLDER, screenshot_with_bbox_filename)
+
+        os.replace(screenshot_path, new_screenshot_path)
+        os.replace(screenshot_with_bbox_path, new_screenshot_with_bbox_path)
+
+        return jsonify(
+            {
+                "screenshot": url_for('static', filename=f'screenshots/{screenshot_filename}', _external=True),
+                "screenshot_withbbox": url_for('static', filename=f'screenshots/{screenshot_with_bbox_filename}', _external=True),
+                "next_actions": {
+                    "intent": shared_agent.memory.performed_actions[-1].get('intent',"/"),
+                    "action-type": shared_agent.memory.performed_actions[-1].get('action-type',"/"),
+                    "target-widget-id": shared_agent.memory.performed_actions[-1].get("target-widget", "/").get("id", "/"),
+                }
+            }
+        )
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 

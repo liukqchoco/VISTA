@@ -1,5 +1,7 @@
 import os
 
+from flask import jsonify
+
 from agent.core import TestAgent
 from agent.device import Device, DeviceManager
 
@@ -14,12 +16,29 @@ if __name__ == "__main__":
     base_dir = os.path.dirname(__file__)
     dm = DeviceManager(device=device, base_dir=base_dir)
     agent = TestAgent(device_manager=dm, base_dir=base_dir)
-    agent.initialize(app_id="A23", scenario_id="S5")  # 113.115 wrong
+    agent.initialize(app_name="DeepL Translator", app_package="com.deepl.mobiletranslator", app_launch_activity=".MainActivity", scenario_id="S5")  # 113.115 wrong
 
     print("Please open the app and direct it to the initial page of the scenario.")
     input("Press enter to start the test...")
 
     while agent.state != "FAILED" and agent.state != "END" and agent.state != "ERROR":
         agent.step()
+        if agent.state == "END":
+            a = jsonify({"message": "GUI testing ends successfully."}), 200
+        if agent.state == "FAILED" and agent.state == "ERROR":
+            a = jsonify({"message": "Sorry, GUI testing failed. Please try again."}), 500
+
+        a = jsonify(
+            {
+                "screenshot": agent.memory.current_screenshot,
+                "screenshot_withbbox": agent.memory.current_screenshot_with_bbox,
+                "next_actions": jsonify(
+                    {
+                        "intent": agent.memory.performed_actions[-1]['intent'],
+                        "action-type": agent.memory.performed_actions[-1]['action-type'],
+                        "target-widget-id": agent.memory.performed_actions[-1]['target-widget']['id'],
+                    }
+                )
+            })
 
 
