@@ -8,7 +8,7 @@ from paddleocr import PaddleOCR
 class OCRDetector:
     def __init__(self):
         self.threshold = 0.8
-        self.model_folder = '/home/lyc/Projects/LLM4ScenGen/llm4scengen/agent/uied/detect_text/inference/'
+        self.model_folder = 'D:\\NJUsemesters\\Third1\\llm4scengen\\agent\\uied\\detect_text\\inference\\'
         self.models = {
             'chinese_cht_mobile_v2.0': PaddleOCR(
                 lang='chinese_cht',
