@@ -46,26 +46,33 @@ class TestAgent:
             "the selected action doesn't correspond to the task scenario"  # 4
         ]
 
-    def initialize(self, app_name:str, app_package:str, app_launch_activity:str, scenario_id: str, rotate_angle: int = 0):
+    def initialize(self,
+                   app_name:str,
+                   app_package:str,
+                   app_launch_activity:str,
+                   scenario_name: str,
+                   scenario_description: str,
+                   scenario_extra_info: dict = None,
+                   rotate_angle: int = 0
+                   ):
         """
         初始化 TestAgent，根据给定的应用和场景 ID 设置目标应用和场景，并启动应用。
-        :param app_: 应用的一系列配置
-        :param scenario_id: 场景的 ID
-        :param rotate_angle: 设备屏幕旋转角度（可选）
         """
         if self.state == "UNINITIALIZED":
             logger.info("Initializing TestAgent")
             self.state = "INITIALIZED"
             # self.app: Dict = APPS[app_id]
-            self.scenario: Dict = SCENARIOS[scenario_id]
+            self.app = {"id": "-1"}
+            self.scenario = {"id": "-1"}
+            # self.scenario: Dict = SCENARIOS[scenario_id]
             self.rotate_angle = rotate_angle
             self.executor.rotate_angle = rotate_angle
             self.memory.app_name = app_name
             self.memory.app_package = app_package
             self.memory.app_launch_activity = app_launch_activity
-            self.memory.target_scenario = self.scenario["description"]
-            if "extra-info" in self.scenario.keys():
-                self.memory.add_basic_info(self.scenario["extra-info"])
+            self.memory.target_scenario = scenario_description
+            if scenario_extra_info != None:
+                self.memory.add_basic_info(scenario_extra_info)
             self.device_manager.launch_app(
                 self.memory.app_package,
                 self.memory.app_launch_activity,

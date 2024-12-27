@@ -1,0 +1,109 @@
+{
+    "img_shape": [
+        2376,
+        1080,
+        3
+    ],
+    "texts": [
+        {
+            "id": 0,
+            "content": "HD",
+            "column_min": 212,
+            "row_min": 37,
+            "column_max": 260,
+            "row_max": 64,
+            "width": 48,
+            "height": 27
+        },
+        {
+            "id": 1,
+            "content": "96%  4:11",
+            "column_min": 648,
+            "row_min": 49,
+            "column_max": 1029,
+            "row_max": 87,
+            "width": 381,
+            "height": 38
+        },
+        {
+            "id": 2,
+            "content": "HD2",
+            "column_min": 210,
+            "row_min": 69,
+            "column_max": 258,
+            "row_max": 99,
+            "width": 48,
+            "height": 30
+        },
+        {
+            "id": 3,
+            "content": "\u82f1\u8bed",
+            "column_min": 217,
+            "row_min": 213,
+            "column_max": 301,
+            "row_max": 257,
+            "width": 84,
+            "height": 44
+        },
+        {
+            "id": 4,
+            "content": "\u4e2d\u6587 (\u7b80\u4f53\uff09",
+            "column_min": 697,
+            "row_min": 210,
+            "column_max": 928,
+            "row_max": 257,
+            "width": 231,
+            "height": 47
+        },
+        {
+            "id": 5,
+            "content": "\u8bf7\u8f93\u5165\u6216\u7c98\u8d34\u4f60\u8981\u7ffb\u8bd1\u7684\u6587\u672c",
+            "column_min": 48,
+            "row_min": 408,
+            "column_max": 668,
+            "row_max": 458,
+            "width": 620,
+            "height": 50
+        },
+        {
+            "id": 6,
+            "content": "88",
+            "column_min": 63,
+            "row_min": 1577,
+            "column_max": 118,
+            "row_max": 1638,
+            "width": 55,
+            "height": 61
+        },
+        {
+            "id": 7,
+            "content": "?123 \u4e2d/\u82f1",
+            "column_min": 31,
+            "row_min": 2258,
+            "column_max": 271,
+            "row_max": 2316,
+            "width": 240,
+            "height": 58
+        },
+        {
+            "id": 8,
+            "content": "\u6362\u884c",
+            "column_min": 933,
+            "row_min": 2262,
+            "column_max": 1022,
+            "row_max": 2312,
+            "width": 89,
+            "height": 50
+        },
+        {
+            "id": 9,
+            "content": "?",
+            "column_min": 805,
+            "row_min": 2260,
+            "column_max": 870,
+            "row_max": 2325,
+            "width": 65,
+            "height": 65
+        }
+    ]
+}

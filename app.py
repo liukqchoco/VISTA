@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify, url_for
 import os
 from agent.core import TestAgent
 from agent.device import Device, DeviceManager
+import shutil
+
 
 app = Flask(__name__)
 
@@ -20,7 +22,7 @@ def initialize():
     global shared_agent, shared_device, shared_dm
 
     data = request.json
-    missing_params = [p for p in ["app_name", "app_package", "app_launch_activity", "scenario_id"] if not data.get(p)]
+    missing_params = [p for p in ["app_name", "app_package", "app_launch_activity", "scenario_name", "scenario_description"] if not data.get(p)]
     if missing_params:
         return jsonify({"error": f"Missing parameters: {', '.join(missing_params)}"}), 400
 
@@ -33,7 +35,9 @@ def initialize():
             app_name=data["app_name"],
             app_package=data["app_package"],
             app_launch_activity=data["app_launch_activity"],
-            scenario_id=data["scenario_id"]
+            scenario_name=data["scenario_name"],
+            scenario_description=data["scenario_description"],
+            scenario_extra_info=data["scenario_extra_info"]
         )
         return jsonify({"message": "Agent initialized successfully."}), 200
     except Exception as e:
@@ -64,8 +68,9 @@ def step():
         new_screenshot_path = os.path.join(STATIC_FOLDER, screenshot_filename)
         new_screenshot_with_bbox_path = os.path.join(STATIC_FOLDER, screenshot_with_bbox_filename)
 
-        os.replace(screenshot_path, new_screenshot_path)
-        os.replace(screenshot_with_bbox_path, new_screenshot_with_bbox_path)
+        # 复制到静态文件夹
+        shutil.copy(screenshot_path, new_screenshot_path)
+        shutil.copy(screenshot_with_bbox_path, new_screenshot_with_bbox_path)
 
         return jsonify(
             {
@@ -80,6 +85,7 @@ def step():
         )
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)

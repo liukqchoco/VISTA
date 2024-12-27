@@ -1,0 +1,129 @@
+{
+    "img_shape": [
+        2376,
+        1080,
+        3
+    ],
+    "texts": [
+        {
+            "id": 0,
+            "content": "HD",
+            "column_min": 210,
+            "row_min": 37,
+            "column_max": 260,
+            "row_max": 64,
+            "width": 50,
+            "height": 27
+        },
+        {
+            "id": 1,
+            "content": " 100%  4:31",
+            "column_min": 605,
+            "row_min": 47,
+            "column_max": 1032,
+            "row_max": 89,
+            "width": 427,
+            "height": 42
+        },
+        {
+            "id": 2,
+            "content": "HD2",
+            "column_min": 210,
+            "row_min": 69,
+            "column_max": 256,
+            "row_max": 99,
+            "width": 46,
+            "height": 30
+        },
+        {
+            "id": 3,
+            "content": "\u82f1\u8bed",
+            "column_min": 217,
+            "row_min": 210,
+            "column_max": 297,
+            "row_max": 257,
+            "width": 80,
+            "height": 47
+        },
+        {
+            "id": 4,
+            "content": "\u4e2d\u6587 (\u7b80\u4f53\uff09",
+            "column_min": 697,
+            "row_min": 208,
+            "column_max": 931,
+            "row_max": 260,
+            "width": 234,
+            "height": 52
+        },
+        {
+            "id": 5,
+            "content": "Remote work",
+            "column_min": 47,
+            "row_min": 400,
+            "column_max": 329,
+            "row_max": 456,
+            "width": 282,
+            "height": 56
+        },
+        {
+            "id": 6,
+            "content": "saves",
+            "column_min": 338,
+            "row_min": 411,
+            "column_max": 460,
+            "row_max": 446,
+            "width": 122,
+            "height": 35
+        },
+        {
+            "id": 7,
+            "content": "time and money",
+            "column_min": 472,
+            "row_min": 405,
+            "column_max": 820,
+            "row_max": 459,
+            "width": 348,
+            "height": 54
+        },
+        {
+            "id": 8,
+            "content": "on",
+            "column_min": 829,
+            "row_min": 416,
+            "column_max": 885,
+            "row_max": 453,
+            "width": 56,
+            "height": 37
+        },
+        {
+            "id": 9,
+            "content": "transportation",
+            "column_min": 48,
+            "row_min": 480,
+            "column_max": 357,
+            "row_max": 530,
+            "width": 309,
+            "height": 50
+        },
+        {
+            "id": 10,
+            "content": "?123 \u4e2d/\u82f1",
+            "column_min": 31,
+            "row_min": 2258,
+            "column_max": 271,
+            "row_max": 2316,
+            "width": 240,
+            "height": 58
+        },
+        {
+            "id": 11,
+            "content": "\u6362\u884c",
+            "column_min": 931,
+            "row_min": 2260,
+            "column_max": 1027,
+            "row_max": 2314,
+            "width": 96,
+            "height": 54
+        }
+    ]
+}
