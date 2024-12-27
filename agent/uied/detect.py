@@ -17,7 +17,7 @@ class WidgetDetector:
         self.resize_length: int = 800
         # self.output_root="D:\\NJUsemesters\\innovation\\newcoding\\llm4scengen\\data\\output"
         # self.output_root="D:\\NJUsemesters\\Third1\\软件测试\\大作业\\代码大作业\\llm4scengen\\data\\output"
-        self.output_root = "D:\\NJUsemesters\\Third1\\llm4scengen"
+        self.output_root = "D:\\NJUsemesters\\Third1\\VISTA"
         """
             ele:min-grad: gradient threshold to produce binary map         
             ele:ffl-block: fill-flood threshold
