@@ -39,58 +39,6 @@ class ActionDecider:
     def next_action(
             self,
             memory: Memory,
-            correcting: bool = False,
-            situation: Optional[str] = None,
-    ) -> Optional[Dict[str, Any]]:
-        """
-        根据当前应用状态和用户操作决策下一步动作。
-        :param memory: Memory 实例，包含应用的当前状态和历史操作
-        :param correcting: 是否重新决策，默认 False
-        :param situation: 重新决策时描述的特定情况
-        :return: 包含操作信息的字典或 None
-        """
-        if not correcting:
-            sys_prompt = system_prompt_next_action(memory=memory)
-            user_prompt = user_prompt_next_action(memory=memory)
-            user_message = {"text": user_prompt, "image": memory.current_screenshot}
-            self.chat_manager.context_pool[self.stage].refresh()
-            logger.info("Deciding Next Action")
-        else:
-            assert situation is not None
-            sys_prompt = None
-            user_message = user_prompt_modify_next_action(situation)
-            logger.info("Re-Deciding Next Action")
-
-        suggestion = memory.pop_suggestion()
-        user_message["text"] += (f"\n\nBelow is the suggestion from the last decision"
-                                     f" that may help you better understand the situation:\n\n{suggestion}")
-
-        # 获取大语言模型的回复
-        response, p_usage, r_usage = self.chat_manager.get_response(
-            stage=self.stage,
-            model="gpt-4-vision-preview",
-            prompt=user_message,
-            system=sys_prompt,
-        )
-        logger.info("Action Decision Received.")
-        logger.info(f"Token Cost: {p_usage} + {r_usage}")
-        # 记录详细回复
-        logger.debug(f"Response: ```{response}```")
-
-        # 从回复中提取操作
-        action = extract_json(response)
-        if action is None \
-                or action.get("intent") is None \
-                or action.get("action-type") is None:
-            logger.error("No Valid Action Found")
-            return None
-
-        logger.info("Action Decision Parsed.")
-        return action
-
-    def confirm_next_action(
-            self,
-            memory: Memory,
             action: Dict[str, Any],
             repeat_times: int = 0,
     ) -> Optional[Dict[str, Any]]:

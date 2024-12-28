@@ -11,6 +11,7 @@ from agent.roles.executor import ActionExecutor
 from agent.roles.observer import Observer
 from agent.roles.recorder import TestRecorder
 from agent.roles.supervisor import TestSupervisor
+from agent.roles.perceiver import Perceiver
 
 
 class TestAgent:
@@ -29,6 +30,7 @@ class TestAgent:
         self.llm = LLMChatManager()
         self.device_manager = device_manager
         self.observer = Observer(device_manager, self.llm)
+        self.perceiver = Perceiver(self.llm)
         self.decider = ActionDecider(self.llm)
         self.recorder = TestRecorder(self.llm, base_dir)
         self.executor = ActionExecutor(device_manager, self.recorder)
@@ -254,15 +256,15 @@ class TestAgent:
         """
         self.memory.save_screenshot(self.memory.cached_screenshot)
         self.memory.cached_screenshot = None
-        # 1. send original image and prompt to llm, decide next action
-        action = self.decider.next_action(self.memory)
+        # 1. send original image and prompt to llm, understand the scenario
+        action = self.perceiver.understanding(self.memory)
         # 2. detect widgets in original image, generate marked image
         screenshot_path = self.memory.current_screenshot
         screenshot_with_bbox_path, resize_ratio, elements = self.observer.detect_widgets(screenshot_path)
         self.memory.save_screenshot_with_bbox(screenshot_with_bbox_path)
         self.memory.current_elements = elements
         # 3. decide concrete action by widget matching or marked image analysis
-        action = self.decider.confirm_next_action(self.memory, action)
+        action = self.decider.next_action(self.memory, action)
         self.memory.add_action(action)
         if action is None:
             self.state = "ERROR"
