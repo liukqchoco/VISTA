@@ -38,8 +38,8 @@ class Config:
 
     def build_output_folders(self):
         # setting data flow paths
-        self.ROOT_INPUT = "/home/lyc/Projects/LLM4ScenGen/llm4scengen/data/input"
-        self.ROOT_OUTPUT = "/home/lyc/Projects/LLM4ScenGen/llm4scengen/data/output"
+        self.ROOT_INPUT = "D:\\NJUsemesters\\Third1\\VISTA\\data\\input"
+        self.ROOT_OUTPUT = "D:\\NJUsemesters\\Third1\\VISTA\\data\\output"
 
         self.ROOT_IMG_ORG = p_join(self.ROOT_INPUT, "org")
         self.ROOT_IP = p_join(self.ROOT_OUTPUT, "ip")

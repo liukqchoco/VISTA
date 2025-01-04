@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, url_for
+from flask_cors import CORS  # 导入 CORS 扩展
 import os
 from agent.core import TestAgent
 from agent.device import Device, DeviceManager
@@ -6,6 +7,8 @@ import shutil
 
 
 app = Flask(__name__)
+
+CORS(app)
 
 shared_agent: TestAgent = None
 shared_device = None
@@ -68,11 +71,10 @@ def step():
         shutil.copy(screenshot_path, new_screenshot_path)
         shutil.copy(screenshot_with_bbox_path, new_screenshot_with_bbox_path)
 
-        status_code = 200
         if shared_agent.state == "END":
-            status_code = 201
+            return "GUI test ends successfully", 201
         if shared_agent.state in ["FAILED", "ERROR"]:
-            status_code = 202
+            return "GUI test failed", 202
 
         return jsonify(
             {
@@ -84,7 +86,7 @@ def step():
                     "target-widget-id": shared_agent.memory.performed_actions[-1].get("target-widget", "/").get("id", "/"),
                 }
             }
-        ), status_code
+        ), 200
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 

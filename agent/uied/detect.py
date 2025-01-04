@@ -15,8 +15,6 @@ class WidgetDetector:
         self.img: Optional[np.ndarray] = None
         self.img_path: Optional[str] = None
         self.resize_length: int = 800
-        # self.output_root="D:\\NJUsemesters\\innovation\\newcoding\\llm4scengen\\data\\output"
-        # self.output_root="D:\\NJUsemesters\\Third1\\软件测试\\大作业\\代码大作业\\llm4scengen\\data\\output"
         self.output_root = "D:\\NJUsemesters\\Third1\\VISTA"
         """
             ele:min-grad: gradient threshold to produce binary map         
