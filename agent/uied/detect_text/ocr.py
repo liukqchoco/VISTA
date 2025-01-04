@@ -16,31 +16,31 @@ class OCRDetector:
     self.models = {
       'chinese_cht_mobile_v2.0': PaddleOCR(
         lang='chinese_cht',
-        det_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_det_infer',
-        cls_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_cls_infer',
-        rec_model_dir=self.model_folder + 'chinese_cht_mobile_v2.0_rec_infer',
+        det_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_det_infer'),
+        cls_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_cls_infer'),
+        rec_model_dir=os.path.join(self.model_folder, 'chinese_cht_mobile_v2.0_rec_infer'),
         use_gpu=False, total_process_num=os.cpu_count(), use_mp=True,
         show_log=False
       ),
       'ch_ppocr_mobile_v2.0_xx': PaddleOCR(
         lang='ch',
-        det_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_det_infer',
-        cls_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_cls_infer',
-        rec_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_rec_infer',
+        det_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_det_infer'),
+        cls_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_cls_infer'),
+        rec_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_rec_infer'),
         use_gpu=False, total_process_num=os.cpu_count(), use_mp=True,
         show_log=False
       ),
       'ch_PP-OCRv2_xx': PaddleOCR(
         lang='ch',
-        det_model_dir=self.model_folder + 'ch_PP-OCRv2_det_infer',
-        cls_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_cls_infer',
-        rec_model_dir=self.model_folder + 'ch_PP-OCRv2_rec_infer',
+        det_model_dir=os.path.join(self.model_folder, 'ch_PP-OCRv2_det_infer'),
+        cls_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_cls_infer'),
+        rec_model_dir=os.path.join(self.model_folder, 'ch_PP-OCRv2_rec_infer'),
         use_gpu=False, total_process_num=os.cpu_count(), use_mp=True, show_log=False),
       'ch_ppocr_server_v2.0_xx': PaddleOCR(
         lang='ch',
-        det_model_dir=self.model_folder + 'ch_ppocr_server_v2.0_det_infer',
-        cls_model_dir=self.model_folder + 'ch_ppocr_mobile_v2.0_cls_infer',
-        rec_model_dir=self.model_folder + 'ch_ppocr_server_v2.0_rec_infer',
+        det_model_dir=os.path.join(self.model_folder, 'ch_ppocr_server_v2.0_det_infer'),
+        cls_model_dir=os.path.join(self.model_folder, 'ch_ppocr_mobile_v2.0_cls_infer'),
+        rec_model_dir=os.path.join(self.model_folder, 'ch_ppocr_server_v2.0_rec_infer'),
         use_gpu=False, total_process_num=os.cpu_count(), use_mp=True,
         show_log=False
       )

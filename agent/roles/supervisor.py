@@ -46,7 +46,7 @@ class TestSupervisor:
     logger.info("Start Loading Check")
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage=self.stage_load,
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=user_message,
       system=sys_prompt,
     )
@@ -98,7 +98,7 @@ class TestSupervisor:
     logger.info("Start Ending Check")
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage=self.stage_end,
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=task_prompt,
     )
     logger.info("Check Result Received")
@@ -123,7 +123,7 @@ class TestSupervisor:
       logger.info("Start Suggestion Generation for observation")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage=self.stage_end,
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=suggestion_prompt,
       )
       logger.info("Suggestion Generation Result Received")
@@ -174,7 +174,7 @@ class TestSupervisor:
     logger.info("Checking Page Change")
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage=self.stage_visual_change,
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=curr_screen_message,
     )
     logger.info("Check Result Received")
@@ -225,7 +225,7 @@ class TestSupervisor:
     logger.info("Checking Valid Page Change")
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage=self.stage_valid_change,
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=curr_screen_message,
     )
     logger.info("Check Result Received")
@@ -250,7 +250,7 @@ class TestSupervisor:
       logger.info("Start Suggestion Generation for correction")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage=self.stage_end,
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=suggestion_prompt,
       )
       logger.info("Suggestion Generation Result Received")

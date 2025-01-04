@@ -95,7 +95,7 @@ class ActionDecider:
         logger.info("Confirming Input Location")
         response, p_usage, r_usage = self.chat_manager.get_response(
           stage="temporary",
-          model="gpt-4-vision-preview",
+          model="gpt-4o",
           prompt=user_message,
         )
         logger.info("Confirm Result Received")
@@ -118,7 +118,7 @@ class ActionDecider:
     logger.info("Querying Target Widget")
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage=self.stage,
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=user_message,
     )
     logger.info("Query Result Received")
@@ -142,7 +142,7 @@ class ActionDecider:
       logger.info("Analyzing Missing Target Widget")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage="temporary",
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=user_message,
       )
       logger.info("Analysis Result Received")
@@ -178,7 +178,7 @@ class ActionDecider:
       logger.info("Querying Possible Location")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage="action-decision",
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=user_message,
       )
       logger.info("Possible Location Received")
@@ -228,7 +228,7 @@ class ActionDecider:
       logger.info("Confirming Input Location")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage="temporary",
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=user_message,
       )
       logger.info("Confirm Result Received")
@@ -266,7 +266,7 @@ class ActionDecider:
       logger.info("Rematching Target Widget")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage=self.stage,
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=user_message,
       )
       logger.info("Rematch Result Received")
@@ -292,7 +292,7 @@ class ActionDecider:
         logger.info("Querying Possible Location")
         response, p_usage, r_usage = self.chat_manager.get_response(
           stage="action-decision",
-          model="gpt-4-vision-preview",
+          model="gpt-4o",
           prompt=user_message,
         )
         logger.info("Possible Location Received")
@@ -345,7 +345,7 @@ class ActionDecider:
         logger.info("Confirming Input Location")
         response, p_usage, r_usage = self.chat_manager.get_response(
           stage="temporary",
-          model="gpt-4-vision-preview",
+          model="gpt-4o",
           prompt=user_message,
         )
         logger.info("Confirm Result Received")
@@ -372,7 +372,7 @@ class ActionDecider:
       logger.info("Re-predicting Target Widget Location")
       response, p_usage, r_usage = self.chat_manager.get_response(
         stage=self.stage,
-        model="gpt-4-vision-preview",
+        model="gpt-4o",
         prompt=user_message,
       )
       logger.info("Prediction Result Received")
@@ -414,7 +414,7 @@ class ActionDecider:
     logger.info("Querying Situation")
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage="temporary",
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=user_prompt,
     )
     logger.info("Situation Feedback Received.")

@@ -32,7 +32,7 @@ class Perceiver:
 
     response, p_usage, r_usage = self.chat_manager.get_response(
       stage=self.stage,
-      model="gpt-4-vision-preview",
+      model="gpt-4o",
       prompt=user_message,
       system=sys_prompt,
     )
