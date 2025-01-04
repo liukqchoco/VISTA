@@ -1,0 +1,21 @@
+test:
+  host: 0.0.0.0
+  port: 5000
+
+  adb_path: /opt/android/sdk/platform-tools
+  root_input: D:/NJUsemesters/Third1/VISTA/data/input
+  root_output: D:/NJUsemesters/Third1/VISTA/data/output
+  ocr_model_path: agent/uied/detect_text/models
+
+  app_id: A23
+  scenario_id: S5
+
+device:
+  screenshot_path: /sdcard/screenshot.png
+  gui_xml_path: /sdcard/ui-dump.xml
+
+llm:
+  http_proxy: http://127.0.0.1:10809
+  https_proxy: http://127.0.0.1:10809
+  base_url: https://api.openai.com/v1
+  api_key: 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

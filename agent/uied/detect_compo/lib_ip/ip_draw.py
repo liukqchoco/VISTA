@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from random import randint as rint
-from agent.uied.CONFIG_UIED import Config
+from agent.uied.config_uied import Config
 
 
 C = Config()
