@@ -5,7 +5,7 @@ test:
   adb_path: /opt/android/sdk/platform-tools
   root_input: D:/NJUsemesters/Third1/VISTA/data/input
   root_output: D:/NJUsemesters/Third1/VISTA/data/output
-  ocr_model_path: agent/uied/detect_text/models
+  ocr_model_path: agent/uied/detect_text/inference
 
   app_id: A23
   scenario_id: S5
