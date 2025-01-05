@@ -9,8 +9,8 @@ from agent.roles.recorder import TestRecorder
 
 class ActionExecutor:
   """
- ActionExecutor 类用于执行各种设备操作，例如触摸、输入、滚动等，并记录这些操作。
- """
+  ActionExecutor 类用于执行各种设备操作，例如触摸、输入、滚动等，并记录这些操作。
+  """
 
   def __init__(self, device_manager: DeviceManager, recorder: TestRecorder):
     """
@@ -123,12 +123,12 @@ class ActionExecutor:
 
   def launch(self, package_name: str, launch_act_name: str, sleep_time: float = 5.0) -> str:
     """
-   启动应用。
-   :param package_name: 应用包名
-   :param launch_act_name: 启动活动名
-   :param sleep_time: 启动后等待时间
-   :return: 执行的命令字符串
-   """
+    启动应用。
+    :param package_name: 应用包名
+    :param launch_act_name: 启动活动名
+    :param sleep_time: 启动后等待时间
+    :return: 执行的命令字符串
+    """
     cmd = self.device_manager.launch_app(package_name, launch_act_name)
     time.sleep(sleep_time)
     return cmd

@@ -5,10 +5,10 @@ from agent.memory import Memory
 
 def system_prompt_next_action(memory: Memory) -> str:
   """
- 生成系统提示，描述当前的任务场景和用户可以执行的操作类型。
- :param memory: Memory 实例，用于获取应用名称、目标场景和用户基本信息
- :return: 包含系统提示的字符串
- """
+  生成系统提示，描述当前的任务场景和用户可以执行的操作类型。
+  :param memory: Memory 实例，用于获取应用名称、目标场景和用户基本信息
+  :return: 包含系统提示的字符串
+  """
   system_prompt = (
     "You are a helpful assistant to guide a user "
     f"to accomplish the task **{memory.target_scenario}** "

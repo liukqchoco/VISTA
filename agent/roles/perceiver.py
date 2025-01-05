@@ -8,7 +8,15 @@ from agent.utils import extract_json
 
 
 class Perceiver:
+  """
+  Perceiver 类用于理解当前场景，包括用户的操作和系统的反馈，以便做出下一步的决策。
+  """
+
   def __init__(self, chat_manager: LLMChatManager):
+    """
+    初始化 Perceiver 类，设置聊天管理器。
+    :param chat_manager: LLMChatManager 实例，用于管理对话上下文
+    """
     self.chat_manager = chat_manager
     self.stage = "action-decision"
 
@@ -18,6 +26,13 @@ class Perceiver:
           correcting: bool = False,
           situation: Optional[str] = None,
   ) -> Optional[Dict[str, Any]]:
+    """
+    理解当前场景，包括用户的操作和系统的反馈，以便做出下一步的决策。
+    :param memory: Memory 实例，用于存储和管理对话历史和上下文
+    :param correcting: 是否为修正模式，用于重新理解上下文
+    :param situation: 需要修正的情境，用于重新理解上下文
+    :return: 理解的场景信息，包括意图和动作类型等
+    """
     if not correcting:
       sys_prompt = system_prompt_next_action(memory=memory)
       user_prompt = user_prompt_next_action(memory=memory)

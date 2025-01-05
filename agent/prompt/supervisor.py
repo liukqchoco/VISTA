@@ -4,12 +4,21 @@ from agent.memory import Memory
 
 
 def system_prompt_loading_check() -> str:
+  """
+  生成系统提示，用于引导用户判断当前页面是否处于加载状态。
+  :return: 包含系统提示的字符串
+  """
   return (
     "You are a professional assistant in GUI testing and image comprehension."
   )
 
 
 def system_prompt_ending_check(memory: Memory) -> str:
+  """
+  生成系统提示，描述当前的任务场景和用户可以执行的操作类型。
+  :param memory: Memory 实例，用于获取应用名称、目标场景和用户基本信息
+  :return: 包含待测任务基本信息的字符串
+  """
   system_prompt = (
     "You are a helpful assistant to guide a user "
     f"to accomplish the task **{memory.target_scenario}** "
@@ -23,6 +32,10 @@ def system_prompt_ending_check(memory: Memory) -> str:
 
 
 def system_prompt_effect_check() -> str:
+  """
+  生成系统提示，用于引导用户判断当前页面是否发生了有效变化。
+  :return: 包含系统提示的字符串
+  """
   return (
     "You are a helpful assistant who can interpret two consecutive GUI screens "
     "before and after a user's action and explain the result of the action to the user."
@@ -30,6 +43,10 @@ def system_prompt_effect_check() -> str:
 
 
 def user_prompt_loading_check() -> str:
+  """
+  生成用户提示，引导用户判断当前页面是否处于加载状态。
+  :return: 包含用户提示的字符串
+  """
   return (
     "Here is the screenshot of the current page during a GUI test of a mobile app.\n"
     "Please determine whether the page is undergoing a loading process. "
@@ -41,6 +58,11 @@ def user_prompt_loading_check() -> str:
 
 
 def user_prompt_ending_check(memory: Memory) -> Tuple[str, str, str, str]:
+  """
+  生成用户提示，引导用户判断当前页面是否已完成测试任务。
+  :param memory: Memory 实例，用于获取测试任务名称、基本信息和已执行操作
+  :return: 四元组，依次对应任务提示、前一截图提示、当前截图提示和初始截图提示
+  """
   task_prompt = f"My test task is **{memory.target_scenario}**\n"
   if memory.basic_info is not None \
           and memory.basic_info.get("requirement") is not None:
@@ -67,6 +89,10 @@ def user_prompt_ending_check(memory: Memory) -> Tuple[str, str, str, str]:
 
 
 def user_prompt_page_change_check() -> Tuple[str, str, str]:
+  """
+  生成用户提示，引导用户判断当前页面是否发生有效变化。
+  :return: 三元组，依次对应任务提示、前一截图提示和当前截图提示
+  """
   task_prompt = (
     "Now, I will give you two consecutive APP GUI screens before and after my action. "
     "Please judge whether my action has successfully caused the change of the APP.\n"
@@ -96,6 +122,11 @@ def user_prompt_page_change_check() -> Tuple[str, str, str]:
 
 
 def user_prompt_valid_change_check(memory: Memory) -> Tuple[str, str, str, str]:
+  """
+  生成用户提示，引导用户判断当前页面是否发生有效变化。
+  :param memory: Memory 实例，用于获取测试任务名称、基本信息和已执行操作
+  :return: 四元组，依次对应任务提示、前一截图提示、当前截图提示和初始截图提示
+  """
   task_prompt = (
     f"I have performed action **{memory.describe_performed_action()}** during the"
     f" task scenario **{memory.target_scenario}** in the app {memory.app_name}.\n"
@@ -127,6 +158,12 @@ def user_prompt_valid_change_check(memory: Memory) -> Tuple[str, str, str, str]:
 
 
 def user_prompt_observation_suggestion(task_prompt: str, response: str) -> str:
+  """
+  生成用户提示，引导用户提出建议以观察 GUI 屏幕重新匹配部件或重新预测部件位置。
+  :param task_prompt: 任务提示
+  :param response: 用户回答
+  :return: 包含用户提示的字符串
+  """
   return (
     "You've checked the GUI screens and judged whether the following task has been completed.\n"
     f" The task is **{task_prompt}**.\n"
@@ -139,6 +176,12 @@ def user_prompt_observation_suggestion(task_prompt: str, response: str) -> str:
 
 
 def user_prompt_correction_suggestion(task_prompt: str, response: str) -> str:
+  """
+  生成用户提示，引导用户提出建议以重新决定操作以纠正任务执行。
+  :param task_prompt: 任务提示
+  :param response: 用户回答
+  :return: 包含用户提示的字符串
+  """
   return (
     "You've checked the GUI screens and judged whether the following task has been completed.\n"
     f" The task is **{task_prompt}**.\n"

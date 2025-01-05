@@ -304,7 +304,7 @@ class TestAgent:
         self.state = "FAILED"
         self.report_self()
         return False
-      action = self.decider.next_action(self.memory, correcting=True, situation=situation)
+      action = self.perceiver.understanding(self.memory, correcting=True, situation=situation)
       if action is not None:
         action = self.decider.confirm_next_action(self.memory, action)
 

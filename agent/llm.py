@@ -15,7 +15,7 @@ os.environ["HTTPS_PROXY"] = config["https_proxy"]
 
 client = OpenAI(
   base_url=config["base_url"],
-  api_key=config["api_key"]
+  api_key=config["api_key"],
 )
 
 
