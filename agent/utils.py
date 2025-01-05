@@ -2,46 +2,6 @@ import json
 import time
 
 
-def load_conf() -> tuple[dict[str, any], dict[str, any]]:
-  """
-  从指定的 JSON 配置文件中加载应用和场景列表，并将它们转换为字典形式返回。
-  :return: 一个包含两个字典的元组，第一个是应用信息字典，第二个是场景信息字典
-  """
-  with open("config/conf.json", mode="r", encoding="utf-8") as f:
-    conf_data = json.load(f)
-  app_list = conf_data["apps"]
-  scenario_list = conf_data["scenarios"]
-  apps = {}
-  for app in app_list:
-    apps[app["id"]] = app
-  scenarios = {}
-  for scenario in scenario_list:
-    scenarios[scenario["id"]] = scenario
-  return apps, scenarios
-
-
-def load_app_and_scenario_config(app_id: str, scenario_id: str) -> dict:
-  """
-  从配置文件中获取指定应用和场景的配置信息。
-  """
-  with open("config/conf.json", mode="r", encoding="utf-8") as f:
-    configs = json.load(f)
-  app_config = [x for x in configs["apps"] if x["id"] == app_id]
-  if len(app_config) == 0:
-    raise ValueError(f"App config with id {app_id} not found.")
-  scenario_config = [x for x in configs["scenarios"] if x["id"] == scenario_id]
-  if len(scenario_config) == 0:
-    raise ValueError(f"Scenario config with id {scenario_id} not found.")
-  return {
-    "app_name": app_config[0]["name"],
-    "app_package": app_config[0]["package"],
-    "app_launch_activity": app_config[0]["launch-activity"],
-    "scenario_name": scenario_config[0]["name"],
-    "scenario_description": scenario_config[0]["description"],
-    "scenario_extra_info": scenario_config[0]["extra-info"],
-  }
-
-
 def gen_timestamp() -> str:
   """
   生成当前的时间戳字符串。
