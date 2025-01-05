@@ -12,6 +12,7 @@ from agent.prompt.decider import (
   user_prompt_analyze_situation,
   user_prompt_analyze_missing_widget
 )
+from agent.roles.perceiver import Perceiver
 from agent.utils import (
   extract_json,
   remove_punctuation,
@@ -37,12 +38,14 @@ class ActionDecider:
   def next_action(
           self,
           memory: Memory,
+          perceiver: Perceiver,
           action: Dict[str, Any],
           repeat_times: int = 0,
   ) -> Optional[Dict[str, Any]]:
     """
     确认或修正下一步操作，支持文本和视觉匹配。
     :param memory: Memory 实例，包含应用的当前状态和历史操作
+    :param perceiver: Perceiver 实例，用于理解当前场景
     :param action: 预定的操作
     :param repeat_times: 确认次数，默认 0
     :return: 确认后的操作字典或 None
@@ -57,7 +60,7 @@ class ActionDecider:
       action["target-widget"] = None
       return action
 
-    # action-type: input / touch
+    # 动作类型：input / touch
     # 尝试通过文本匹配目标组件
     matched_element = None
     if action.get("target-widget") is not None and self.enable_text_match:
@@ -157,7 +160,7 @@ class ActionDecider:
       option_num = option['option-number']
       logger.info(f"Option Number Extracted: {option_num}")
       if option_num == 1:
-        action = self.next_action(
+        action = perceiver.understanding(
           memory,
           correcting=True,
           situation=(
@@ -165,7 +168,7 @@ class ActionDecider:
             " causing the app to not respond correctly"
           )
         )
-        return self.confirm_next_action(memory, action, repeat_times + 1)
+        return self.next_action(memory, perceiver, action, repeat_times + 1)
 
       if action["action-type"] == "input":
         user_message = user_prompt_confirm_input_action()

@@ -261,7 +261,7 @@ class TestAgent:
     self.memory.save_screenshot_with_bbox(screenshot_with_bbox_path)
     self.memory.current_elements = elements
     # 3. decide concrete action by widget matching or marked image analysis
-    action = self.decider.next_action(self.memory, action)
+    action = self.decider.next_action(self.memory, self.perceiver, action, 0)
     self.memory.add_action(action)
     if action is None:
       self.state = "ERROR"
