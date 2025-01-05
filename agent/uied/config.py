@@ -37,6 +37,10 @@ class Config:
       config = yaml.safe_load(f)['test']
     self.ROOT_INPUT = config['root_input']
     self.ROOT_OUTPUT = config['root_output']
+    if not os.path.exists(self.ROOT_INPUT):
+      os.mkdir(self.ROOT_INPUT)
+    if not os.path.exists(self.ROOT_OUTPUT):
+      os.mkdir(self.ROOT_OUTPUT)
 
     self.ROOT_IMG_ORG = p_join(self.ROOT_INPUT, "org")
     self.ROOT_IP = p_join(self.ROOT_OUTPUT, "ip")

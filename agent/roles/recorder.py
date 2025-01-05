@@ -23,7 +23,11 @@ class TestRecorder:
     self.history_action = []
     self.chat_manager = chat_manager
     self.script_base_dir = os.path.join(base_dir, "data", "script")
+    if not os.path.exists(self.script_base_dir):
+      os.makedirs(self.script_base_dir)
     self.chat_base_dir = os.path.join(base_dir, "data", "chat")
+    if not os.path.exists(self.chat_base_dir):
+      os.makedirs(self.chat_base_dir)
 
   def record(self, action: Dict[str, Any], memory: Memory, require_widget: bool) -> None:
     """

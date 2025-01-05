@@ -162,24 +162,32 @@
 
 ### 软件环境
 
-- Python 3.8+（不要超过3.10，版本不兼容）
-- Android SDK 配置 `platform-tools` 环境变量
+- Python3（>=3.8,<=3.10）
+- Android SDK（主要使用 ADB 工具）
 
 ### 后端初始化
 
-1. 必要文件夹初始化：
+以下配置项均在 `config/application.yml` 中配置。
 
-   1. 请创建`/data/chat`,`/data/input`,`/data/log`,`/data/output`,`/data/script`文件夹
+1. 测试相关（`test`）：
+   1. `host`：后端服务的 IP 地址
+   2. `port`：后端服务的端口号
+   3. `adb_path`：ADB 工具的路径
+   4. `root_input`：UIED 工具的输入根目录
+   5. `root_output`：UIED 工具的输出根目录
+   6. `ocr_model_path`：OCR 模型的路径，运行时会自动下载
+   7. `app_id`：对应 `conf.json` 中应用的 ID，仅用于后端独立测试
+   8. `scenario_id`：对应 `conf.json` 中场景的 ID，仅用于后端独立测试
 
-   2. 请创建`/ip`, `/merge`, `/ocr`文件夹
+2. 设备相关（`device`）：
+   1. `screenshot_path`：截图在待测设备上的存储路径
+   2. `gui_xml_path`：UIED 工具生成的 XML 文件在待测设备上的存储路径
 
-2. 路径修改：
-   1. 请修改`/agent/uied/detect.py`的18行，替换成你的平台上该项目的根目录
-   2. 请修改`/agent/uied/CONFIG.py`的41与42行，替换成你的平台上的对应路径
-
-3. 大模型环境配置
-   1. 由于本项目使用的是GPT-4o，需要使用代理才能访问，请修改`/agent/llm.py`的3-4行，把代理更换成本地代理
-   2. 本项目通过调用GPT-4o的api来实现一系列大模型交互操作，请在`/agent/llm.py`的第13行，即定义`OPENAI`对象的位置，输入有效的GPT-4o的`api_key`
+3. 大模型相关（`llm`）：
+   1. `http_proxy`：HTTP 代理地址，用以访问 OpenAI API
+   2. `https_proxy`：HTTPS 代理地址，作用同上
+   3. `base_url`：大模型的 API 地址
+   2. `api_key`：API 的密钥
 
 4. 特别注意：项目路径**禁止**包含中文，cv2包无法读取中文路径下的图片
 
@@ -198,4 +206,3 @@
    ```
 
 3. 调用 API 或使用前端Web界面完成测试探索。
-
